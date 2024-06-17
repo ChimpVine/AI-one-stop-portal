@@ -8,7 +8,7 @@ Chimpvine is a web application built with Flask that provides educational conten
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- 
+
 ## Overview
 
 Chimpvine is designed to dynamically generate educational content based on user queries. It serves as an educational platform where users can access articles, quizzes, and interactive content related to various mathematical concepts. The application also includes administrative functionalities for managing users, departments, and content generation.

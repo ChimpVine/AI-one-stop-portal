@@ -30,7 +30,7 @@ app.config.from_object(Config)
 db.init_app(app)
 login.init_app(app)
 migrate = Migrate(app, db)
-openAI_key = "sk-proj-1vPIlHmPoYx9c8W2Co0kT3BlbkFJqzfUBPrTA6eCLpiwthJk"
+openAI_key = "API_Kep"
 
 
 @app.route('/login', methods=['GET', 'POST'])

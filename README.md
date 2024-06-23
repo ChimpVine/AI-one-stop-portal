@@ -17,7 +17,7 @@ Chimpvine is designed to dynamically generate educational content based on user 
 
 - **Content Generation**: Automatically generates educational articles based on specified topics and keywords.
 - **User Management**: Allows registration, login, and assignment of administrative roles.
-- **Department Assignment**: Assigns users to various departments such as H5P, Article, and Quiz.
+- **Department Assignment**: Assigns users to various departments such as H5P, Article, Quiz and Video Script.
 - **Database Integration**: Utilizes SQLAlchemy for database management, storing user data and department assignments.
 - **Web Interface**: Provides a user-friendly web interface for interaction and management.
 

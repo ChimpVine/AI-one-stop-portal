@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9d7; /* Light yellow */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #850f8d; /* Dark purple */
+        }
+
+        a {
+            color: #007bff; /* Blue */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3; /* Dark blue on hover */
+        }
+
+        p {
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Admin!</h1>
+        <p><a href="{{ url_for('register') }}">Register a new staff member</a></p>
+        <p><a href="{{ url_for('assign_departments') }}">Assign Departments to Staff</a></p>
+        <p><a href="{{ url_for('logout') }}">Log Out</a></p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+<head>
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9d7; /* Light yellow */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #850f8d; /* Dark purple */
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        nav ul li a:hover {
+            background-color: #c738bd; /* Purple on hover */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #850f8d; /* Dark purple */
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            width: 80%;
+        }
+
+        form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #850f8d; /* Dark purple */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #c738bd; /* Purple on hover */
+        }
+
+        .content-list {
+            text-align: left;
+        }
+
+        .content-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content-list ul li {
+            background-color: #f0f0f0;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>Generate H5P Content</h1>
+    <form method="post" action="/h5p_generation">
+        <label for="sheet_id">Google Sheet ID:</label>
+        <input type="text" id="sheet_id" name="sheet_id" required><br><br>
+        <label for="folder_id">Google Drive Folder ID:</label>
+        <input type="text" id="folder_id" name="folder_id" required><br><br>
+        <button type="submit">Generate</button>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

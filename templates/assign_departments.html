@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+    <title>Assign Departments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9d7; /* Light yellow */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px; /* Adjusted width */
+            text-align: center;
+        }
+
+        h1 {
+            color: #850f8d; /* Dark purple */
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            appearance: none;
+            background-image: linear-gradient(45deg, transparent 50%, #ccc 50%), linear-gradient(135deg, #ccc 50%, transparent 50%);
+            background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px);
+            background-size: 5px 5px, 5px 5px;
+            background-repeat: no-repeat;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #c738bd; /* Purple */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #e49bff; /* Light purple */
+        }
+        a.button {
+            display: inline-block;
+            background-color: #007bff; /* Blue */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #0056b3; /* Dark blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <form method="post" action="{{ url_for('assign_departments') }}">
+        <h1>Assign Departments</h1>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.user.label }}<br>
+            {{ form.user() }}<br>
+        </p>
+        <p>
+            {{ form.departments.label }}<br>
+            {{ form.departments() }}<br>
+        </p>
+        <p>{{ form.submit() }}</p>
+        <a href="{{ url_for('index') }}" class="button">Back</a>
+    </form>
+</body>
+</html>

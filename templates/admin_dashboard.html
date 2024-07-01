@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9d7; /* Light yellow */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #850f8d; /* Dark purple */
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: block;
+            color: #007bff; /* Blue */
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #007bff; /* Blue */
+            color: #fff; /* White */
+        }
+
+        p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Admin!</h1>
+        <a href="{{ url_for('register') }}">Register a new staff member</a>
+        <a href="{{ url_for('assign_departments') }}">Assign Departments to Staff</a>      
+        <a href="{{ url_for('create_admin') }}">Add Admin</a>
+        <a href="{{ url_for('manage_users') }}">Manage Users</a>
+        <a href="{{ url_for('logout') }}">Log Out</a>
+    </div>
+</body>
+</html>

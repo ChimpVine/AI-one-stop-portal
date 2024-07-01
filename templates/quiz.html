@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9d7; /* Light yellow */
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #850f8d; /* Dark purple */
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            display: inline-block;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        nav ul li a:hover {
+            background-color: #c738bd; /* Purple on hover */
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: #850f8d; /* Dark purple */
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form label {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            width: 80%;
+        }
+
+        form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #850f8d; /* Dark purple */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background-color: #c738bd; /* Purple on hover */
+        }
+
+        .content-list {
+            text-align: left;
+        }
+
+        .content-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content-list ul li {
+            background-color: #f0f0f0;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        .link-section {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 16px;
+            color: #850f8d; /* Dark purple */
+        }
+
+        .link-section a {
+            color: #c738bd; /* Purple */
+            text-decoration: none;
+        }
+
+        .link-section a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <!-- Include SweetAlert2 CSS and JavaScript -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
+</head>
+<body>
+    {% include 'navbar.html' %}
+
+    <h1>Welcome, This Quiz Section</h1>
+    <h2>{{ current_user.full }}</h2>
+    <h2>{{ current_user.email }}</h2>
+
+    <!-- Other content of the dashboard goes here -->
+
+    <div class="container">
+        <h1>Welcome to quiz Page</h1>
+        <div class="link-section">
+            Click here: <a href="https://docs.google.com/spreadsheets/d/1EBkZ61_OSgU4v8w1FVTtmdA5xZDRVYP0yvWbP43ftpg/edit?gid=0#gid=0" target="_blank">Template Format Example </a>
+        </div>
+        <form id="quizForm" name="quizForm" method="POST" action="/submit_quiz">
+            <label for="name">Google sheet IP:</label>
+            <input type="text" id="quizForm-id" name="quizForm-name">
+            <button type="submit">Submit</button>
+        </form>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    {% for category, message in messages %}
+                        Swal.fire({
+                            icon: '{{ "error" if category == "error" else "success" if category == "success" else "warning" }}',
+                            title: '{{ category|capitalize }}',
+                            text: '{{ message }}',
+                            timer: 3000,
+                            showConfirmButton: false
+                        });
+                    {% endfor %}
+                });
+            </script>
+        {% endif %}
+        {% endwith %}
+        
+        <h2>Content Created:</h2>
+        <div class="content-list">
+            <ul>
+                {% for created_content in created_contents %}
+                <li>{{ created_content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <h2>Content Failed:</h2>
+        <div class="content-list">
+            <ul>
+                {% for failed_content in failed_contents %}
+                <li>{{ failed_content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

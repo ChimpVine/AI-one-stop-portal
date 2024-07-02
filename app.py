@@ -63,6 +63,7 @@ def logout():
     return redirect(url_for('index'))
 
 
+@
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():
@@ -70,16 +71,32 @@ def register():
         flash('You do not have permission to access this page.', 'error')
         return redirect(url_for('index'))
 
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        user = User(email=form.email.data, full_name=form.full_name.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('Staff member registered successfully!', 'success')
-        return redirect(url_for('assign_departments'))
+    errors = {}
+    if request.method == 'POST':
+        full_name = request.form.get('full_name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        password2 = request.form.get('password2')
 
-    return render_template('register.html', title='Register', form=form)
+        # Validation
+        if not full_name:
+            errors['full_name'] = 'Full Name is required.'
+        if not email:
+            errors['email'] = 'Email is required.'
+        if not password:
+            errors['password'] = 'Password is required.'
+        if password != password2:
+            errors['password2'] = 'Passwords do not match.'
+
+        if not errors:
+            user = User(email=email, full_name=full_name)
+            user.set_password(password)
+            db.session.add(user)
+            db.session.commit()
+            flash('Staff member registered successfully!', 'success')
+            return redirect(url_for('assign_departments'))
+
+    return render_template('register.html', title='Register', errors=errors)
 
 # @app.route('/assign_departments', methods=['GET', 'POST'])
 # @login_required

@@ -62,8 +62,6 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-
-@
 @app.route('/register', methods=['GET', 'POST'])
 @login_required
 def register():

@@ -1,0 +1,24 @@
+    .container {
+        margin-top: 50px;
+    }
+    .dashboard-box {
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+    }
+    .dashboard-box h3 {
+        margin-bottom: 20px;
+    }
+    .dashboard-box a {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    .dashboard-box a:hover {
+        background-color: #0056b3;
+    }

@@ -1,0 +1,52 @@
+"""
+Role: Act as a content writer. You are about to write an article for an edtech site.
+        Task: Generate an article for the requested topic. Generate the output as shown in the example below:
+
+        Example :
+
+        Input Query : Generate me an article for "GCF"
+
+        Output:
+        {
+        "title": "Your Post Title",
+        "content": " ",
+        "acf": {
+            "faq_quesion_1": "What is the importance of finding the Greatest Common Factor (GCF)?",
+            "faq_answer_1": "Finding the Greatest Common Factor (GCF) is crucial as it helps simplify fractions and solve various mathematical problems efficiently.",
+            "faq_quesion_2": "How does the GCF concept relate to factors?",
+            "faq_answer_2": "The GCF is closely related to the concept of factors, as it represents the largest number that divides two or more numbers without leaving a remainder.",
+            "faq_quesion_3": "Can the GCF be utilized to simplify fractions?",
+            "faq_answer_3": "Yes, the GCF is instrumental in simplifying fractions by dividing both the numerator and denominator by their greatest common factor.",
+            "faq_quesion_4": "What methods are available to determine the GCF of numbers?",
+            "faq_answer_4": "Several methods exist to find the GCF, including prime factorization, listing factors, and using the Euclidean algorithm.",
+            "faq_quesion_5": "How is the concept of GCF applied in real-life situations?",
+            "faq_answer_5": "The concept of GCF finds practical applications in various real-life scenarios such as simplifying recipes, dividing resources equally, and optimizing resource allocation in business operations.",
+            "articles_description": "<h3>What is GCF?:</h3> In the realm of mathematics, particularly when dealing with numbers and their relationships, the term Greatest Common Factor or GCF frequently arises. But what exactly does it entail? Let's embark on a journey into the realm of GCF and uncover its significance in solving mathematical quandaries.",
+            "analogy_of_defination": "<h3>The GCF Explained:</h3> The Greatest Common Factor (GCF) of two or more numbers is the largest number that divides each of the given numbers without leaving a remainder. In simpler terms, it is the greatest number that is a factor of all the given numbers.",
+            "articles_methods": "<h3>Finding the GCF: </h3>  There are several methods to determine the GCF of numbers. One approach involves listing the factors of each number and identifying the greatest common factor. Another method entails using prime factorization to find the GCF efficiently.",
+            "examples": "<h3>Finding the GCF of 24 and 36:</h3> <strong> Step 1: </strong> List the factors of each number<br>Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24<br>Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36<br><strong> Step 2: </strong> Identify the greatest common factor<br>The greatest common factor of 24 and 36 is 12.<br>Thus, the GCF of 24 and 36 is 12.",
+            "example": "<strong> Summary::</strong> <br> This example demonstrates the method of finding the Greatest Common Factor (GCF) of two numbers, 24 and 36. Initially, the factors of each number are listed, followed by identifying the greatest common factor among them. By determining that the largest number shared by both sets of factors is 12, it is concluded that the GCF of 24 and 36 is 12. This process illustrates how the GCF is utilized to identify the largest divisor common to both numbers, facilitating calculations and problem-solving in various mathematical contexts. ",
+            "article_tips_and_tricks": "<strong>1. Prime Factorization:</strong><br> <strong>Scenario:</strong> Finding the GCF of 18 and 24.<br> <strong>Tip: </strong>To find the GCF, list the factors of each number and identify the greatest common factor.<br> Calculation: Factors of 18: 1, 2, 3, 6, 9, 18 <br> Factors of 24: 1, 2, 3, 4, 6, 8, 12, 24 <br> Greatest common factor: 6<br> Answer: A) 6 cookies. <br><strong>2. The Garden Plot Puzzle</strong><br><strong>Scenario:</strong> Finding the GCF of 30 and 42.<br><strong>Tip: </strong>List the factors of each number and identify the greatest common factor to find the GCF.<br>Calculation: Factors of 30: 1, 2, 3, 5, 6, 10, 15, 30<br>Factors of 42: 1, 2, 3, 6, 7, 14, 21, 42<br>Greatest common factor: 6<br>Answer: B) 14 meters.<br><strong>3. The Classroom Bookshelf Challenge</strong><br><strong>Scenario:</strong> Finding the GCF of 36 and 48.<br><strong>Tip:</strong> Utilize the method of listing factors to find the GCF of the given numbers.<br>Calculation: Factors of 36: 1, 2, 3, 4, 6, 9, 12, 18, 36<br>Factors of 48: 1, 2, 3, 4, 6, 8, 12, 16, 24, 48<br>Greatest common factor: 12<br>Answer: C) 24 books.",
+            "application": "<strong>Real-Life Applications of GCF:</strong>,<br> <strong>Story: The GCF Expedition of Emma and Noah</strong><br>Emma and Noah, two adventurous friends, embarked on a journey filled with puzzles and challenges that required the application of GCF to overcome obstacles and achieve success.<br> <strong>Challenge 1: The Puzzle Maze</strong><br> Emma and Noah found themselves in a perplexing maze filled with enigmatic symbols. To unlock the next passage, they needed to decipher the greatest common factor of two numbers written on a plaque. The numbers were 16 and 24. Recognizing the significance of GCF, they quickly determined that the greatest common factor was 8, allowing them to proceed through the maze.<br>  <strong>Challenge 2: The Cryptic Cipher</strong> <br> Continuing their expedition, Emma and Noah stumbled upon an ancient cryptic cipher inscribed on a stone tablet. To decipher the message, they had to compute the GCF of two mysterious numbers engraved beneath the inscription. The numbers revealed were 42 and 56. Applying their knowledge of GCF, they deduced that the greatest common factor was 14, unlocking the hidden message and unraveling the mystery. <br>  <strong>Challenge 3: The Guardian's Riddle</strong> <br>In their final challenge, Emma and Noah encountered a wise guardian guarding a hidden treasure. The guardian presented them with a riddle that involved determining the GCF of three numbers carved on a stone pedestal. The numbers were 36, 54, and 72. Drawing upon their understanding of GCF, Emma and Noah calculated that the greatest common factor was 18, earning them the guardian's approval and access to the treasure.",
+            "quiz": "<strong>Quiz 1: </strong><br> What is the significance of finding the Greatest Common Factor (GCF)?,<br> <strong>Quiz 2: </strong><br>  How does the GCF concept relate to factors?,<br> <strong>Quiz 3: </strong><br> Can the GCF be utilized to simplify fractions?,<br> <strong>Quiz 4: </strong><br> What methods are available to determine the GCF of numbers?,<br> <strong>Quiz 5: </strong><br> How is the concept of GCF applied in real-life situations?"
+            }
+        }
+
+        Instruction:
+
+        1. Always generate output on JSON format.
+        2. Never use single quote in the question.
+        3. Always remember that its faq_quesion not faq_question
+        4. Remember don't put anything inside the content part let it be emty as it is
+        5, Don't put : in the between  "Your Post Title"
+        6. Always put the h3 tag between each sub heading and strong tag between each context . For eg: "<h3>sub heading</h3>, <strong>context</strong>.
+        7. , 5 Tips and Tricks, 5 Quizzes, 5 Real-Life Applications and 5 FAQs.
+        8. Also generate "example" which is a small Summary of the "examples"
+        9. Generae that explain in more words
+        10. Always generate 3 examples
+        11. The article should be 2000 words long and explained in more detail.
+        12. Don't provide additional_kwargs with the answer
+
+    {context}
+
+    """

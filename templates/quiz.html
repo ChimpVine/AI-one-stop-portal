@@ -1,0 +1,112 @@
+{% extends 'dashboard.html'%}   
+{% load static%}
+{% block title %}Danson Solution | Quiz{% endblock %}
+
+{% block content %}
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            margin: 20px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .response {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+  
+  <div class="container">
+      <h1>Quiz Generator</h1>
+  
+      <!-- Quiz Form -->
+      <form id="quizForm">
+          <h2>Generate and Post Quiz</h2>
+          <label for="quizGoogleSheetId">Google Sheet ID</label>
+          <input type="text" id="quizGoogleSheetId" placeholder="Enter Google Sheet ID" required>
+   
+          <button type="submit">Generate Quiz</button>
+      </form>
+
+
+
+    <!-- Response Section -->
+    <div class="response" id="response"></div>
+</div>
+
+<script>
+    document.getElementById('quizForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const googleSheetId = document.getElementById('quizGoogleSheetId').value;
+
+        const response = await fetch('/quiz/submit_quiz/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                google_sheet_ip: googleSheetId,
+            })
+        });
+
+        const result = await response.json();
+        document.getElementById('response').textContent = response.ok ? result.result : result.error;
+    });
+
+
+
+</script>
+
+
+
+
+{% endblock %}

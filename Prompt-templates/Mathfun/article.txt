@@ -1,0 +1,189 @@
+"""Role: Act as a content writer. You are about to write an article for an edtech site.
+        Task: Generate an article for the requested topic. Generate the output as shown in the example below:
+
+        Example :
+
+        Input Query : Generate me an article for "Even and Odd Numbers"
+
+        OUTPUT:
+
+        <h2><strong>Introduction</strong></h2>
+
+        <p>Numbers are the essence of mathematics, and among them, even and odd numbers stand as peculiar twins in the realm of numerical wonders. Just as in life, where opposites attract, the pairing of even and odd numbers brings a fascinating harmony to the world of mathematics.</p>
+
+        <p>This article will be your one-stop guide to understanding even and odd numbers. We’ll delve into their definitions, explore their properties, and uncover their hidden importance in both mathematics and everyday situations. We’ll equip you with strategies to identify even and odd numbers like a pro and even show you some cool tricks you can use to solve math problems faster. So, whether you’re a curious student or someone who wants to brush up on the basics, this article is for you.</p>
+
+        <h2><strong>Understanding Even and Odd Numbers</strong></h2>
+
+        <h3><strong>What are Even and Odd Numbers?</strong></h3>
+
+        <p><strong>Even numbers:</strong> Even numbers are whole numbers that can be perfectly divided by 2 with no remainder. Examples of even numbers include 2, 4, 6, 8, 10, and so on.</p>
+
+        <p><strong>Odd numbers:</strong> Odd numbers are whole numbers that leave a remainder of 1 when divided by 2. Examples of odd numbers include 1, 3, 5, 7, 9, and so on.</p>
+
+        <h3><strong>Properties of Even and Odd Numbers</strong></h3>
+
+        <h4><strong>Even Numbers:</strong></h4>
+
+        <ul>
+        <li><strong>Divisible by 2:</strong> Even numbers are those that can be divided by 2 with no remainder.</li>
+        <li><strong>Ending in 0, 2, 4, 6, or 8:</strong> The last digit of even numbers is always 0, 2, 4, 6, or 8.</li>
+        </ul>
+
+        <h4><strong>Odd Numbers:</strong></h4>
+
+        <ul>
+        <li><strong>Not Divisible by 2:</strong> Odd numbers cannot be divided by 2 without leaving a remainder of 1.</li>
+        <li><strong>Ending in 1, 3, 5, 7, or 9:</strong> The last digit of odd numbers is always 1, 3, 5, 7, or 9.</li>
+        </ul>
+
+        <h2><strong>Importance of Even and Odd Numbers</strong></h2>
+        <p>Even and odd numbers might seem like a basic concept, but their significance in the world of mathematics and beyond is truly remarkable. Let’s delve deeper and explore why understanding even and odd numbers is crucial.</p>
+        <h3><strong>Role of Even and Odd Numbers in Mathematics</strong></h3>
+
+        <p>These classifications pave the way for numerous mathematical operations and concepts:</p>
+
+        <ul>
+        <li><strong>Number Theory:</strong> Even and odd numbers are fundamental building blocks in number theory, exploring properties like divisibility and prime numbers.</li>
+        <li><strong>Algebra:</strong> Even and odd numbers properties play a vital role in simplifying algebraic expressions and predicting outcomes of operations.</li>
+        <li><strong>Geometry:</strong> Even and odd numbers find applications in geometric shapes, influencing properties like the number of sides in a polygon.</li>
+        </ul>
+
+        <h3><strong>Application of Even and Odd Numbers in Daily Life Scenarios</strong></h3>
+
+        <p>Even and odd numbers aren’t confined to textbooks – they are surprisingly present in our everyday lives:</p>
+
+        <ul>
+        <li><strong>Pairing Objects:</strong> Even numbers ensure equal distribution – even numbers of socks, shoes, or chopsticks for a balanced experience.</li>
+        <li><strong>Alternating Patterns:</strong> Traffic lights often follow an even-odd pattern to ensure smooth traffic flow.</li>
+        <li><strong>Problem-Solving:</strong> Even and odd properties can be used to solve everyday problems, like distributing pizza slices evenly among friends.</li>
+        </ul>
+
+        <h3><strong>Significance of Even and Odd Numbers in Problem-Solving</strong></h3>
+
+        <p>Beyond everyday applications, even and odd numbers hold immense value in problem-solving:</p>
+
+        <ul>
+        <li><strong>Logic Puzzles:</strong> Many logic puzzles involve identifying even and odd properties to reach the solution.</li>
+        <li><strong>Parity Checks:</strong> In computer science, even and odd properties are used for “parity checks” – a way to detect errors in data transmission.</li>
+        </ul>
+
+        <h2><strong>Recognizing Even and Odd Numbers</strong></h2>
+
+        <h3><strong>Strategies for Identifying Even Numbers</strong></h3>
+
+        <p>Here are two key methods to recognize even numbers quickly and confidently:</p>
+
+        <ul>
+        <li><strong>Divisibility by 2:</strong> If a number is divisible by 2 with no remainder, it’s an even number.</li>
+        <li><strong>Last Digit Analysis:</strong> Even numbers end in 0, 2, 4, 6, or 8.</li>
+        </ul>
+
+        <h3><strong>Strategies for Recognizing Odd Numbers</strong></h3>
+
+        <p>Just like even numbers, odd numbers have their own identification tricks:</p>
+
+        <ul>
+        <li><strong>Non-divisibility by 2:</strong> Odd numbers cannot be divided by 2 without leaving a remainder of 1.</li>
+        <li><strong>Last Digit Analysis:</strong> Odd numbers end in 1, 3, 5, 7, or 9.</li>
+        </ul>
+
+        <h3><strong>Practice Exercises to Reinforce Recognition Skills</strong></h3>
+
+        <p>Now that you have the tools, let’s put them into practice. Try identifying whether the following numbers are even or odd:</p>
+
+        <ul>
+        <li>42 (Even: divisible by 2 and ends in 2)</li>
+        <li>81 (Odd: not divisible by 2 and ends in 1)</li>
+        <li>110 (Even: divisible by 2 and ends in 0)</li>
+        <li>537 (Odd: not divisible by 2 and ends in 7)</li>
+        </ul>
+
+        <h2><strong>Even and Odd Properties in Arithmetic Operations</strong></h2>
+
+        <p>Understanding how even and odd numbers behave during basic arithmetic operations like addition, subtraction, multiplication, and division can be a game-changer:</p>
+
+        <h3><strong>Adding or Subtracting Even and Odd Numbers</strong></h3>
+
+        <p>Even + Even = Even</p>
+        <p>Odd + Odd = Even</p>
+        <p>Even + Odd = Odd</p>
+        <p>Even – Even = Even</p>
+        <p>Odd – Odd = Even</p>
+        <p>Even – Odd = Odd</p>
+        <p>Odd – Even = Odd</p>
+
+        <h3><strong>Multiplying and Dividing Even and Odd Numbers</strong></h3>
+
+        <p>Even x Even = Even</p>
+        <p>Odd x Odd = Odd</p>
+        <p>Even x Odd = Even</p>
+
+        <h2><strong>Even and Odd Numbers in Algebraic Expressions</strong></h2>
+
+        <p>Even and odd properties can be applied to simplify algebraic expressions:</p>
+
+        <h3><strong>Identifying Patterns in Equations Involving Even and Odd Numbers</strong></h3>
+
+        <p>By recognizing even and odd terms in an equation, you can predict the outcome of certain operations.</p>
+
+        <h3><strong>Simplifying Expressions Using Even and Odd Properties</strong></h3>
+
+        <p>Knowing that Even + Even = Even or Even x Odd = Even allows you to combine or cancel out terms in expressions, leading to faster solutions.</p>
+
+        <h2><strong>Practical Examples Demonstrating the Application of Even and Odd Number Properties in Problem-Solving</strong></h2>
+
+        <p>Let’s see how these concepts translate into real-world problem-solving:</p>
+
+        <p>Example 1: You have 12 cookies and want to share them equally among your friends. Since 12 is even (divisible by 2 and ends in 2), you can distribute them evenly without any leftover cookies.</p>
+
+        <p>Example 2: An equation states: x + 7 = 14. Knowing that 7 is odd, we can add -7 to both sides and see that x must be even.</p>
+
+        <h2><strong>Conclusion</strong></h2>
+
+        <p>We’ve embarked on a journey exploring the fascinating world of even and odd numbers. From their basic definitions to their surprising applications, we’ve uncovered the magic these seemingly simple concepts hold.</p>
+
+        <h3><strong>Recap of Key Points Covered in the Article:</strong></h3>
+
+        <ul>
+        <li>We established the definitions of even and odd numbers, along with their divisibility and last-digit rules for quick identification.</li>
+        <li>We delved into the significance of even and odd numbers in mathematics, highlighting their role in number theory, algebra, and geometry.</li>
+        <li>We explored the practical applications of even and odd numbers in everyday life, from ensuring fair distribution to understanding traffic flow patterns.</li>
+        <li>We equipped ourselves with strategies to recognize even and odd numbers efficiently, including divisibility checks and last-digit analysis.</li>
+        <li>We unlocked the power of even and odd number properties in solving mathematical problems, learning how these concepts can be applied to arithmetic operations and simplify algebraic expressions.</li>
+        </ul>
+
+        <p>The journey with even and odd numbers doesn’t end here. As you progress in mathematics, you’ll encounter even and odd properties resurfacing in more advanced topics like prime factorization and modular arithmetic.</p>
+
+        <h3><strong>Ways to Keep Exploring:</strong></h3>
+
+        <ul>
+        <li>Challenge yourself with online quizzes and puzzles that involve even and odd numbers.</li>
+        <li>Look for patterns in everyday objects – are there even or odd numbers of stairs in your house? How about buttons on your shirt?</li>
+        <li>Try inventing your own word problems or brain teasers that utilize even and odd properties.</li>
+        </ul>
+
+        <p>The more you practice and explore, the more you’ll appreciate the elegance and versatility of even and odd numbers in the vast world of mathematics.</p>
+
+        <h2><strong>Frequently Asked Questions (FAQs)</strong></h2>
+
+        <h3><strong>Are there any numbers that are neither even nor odd?</strong></h3>
+
+        <p>No, whole numbers are classified as either even or odd. Zero is a special case; it’s considered neither even nor odd by some mathematicians, while others consider it to be even because it’s divisible by 2.</p>
+
+        <h3><strong>How can I identify even and odd numbers quickly when dealing with large numbers?</strong></h3>
+
+        <p>For larger numbers, divisibility by 2 can be cumbersome. Here’s a trick: a number is even if the last two digits are divisible by 4. For example, 1256 is even because the last two digits (56) are divisible by 4 (14).</p>
+
+        <h3><strong>How are even and odd numbers used in advanced mathematics?</strong></h3>
+
+        <p>Even and odd properties play a crucial role in concepts like parity checks (used in error detection in data transmission), modular arithmetic (a system of clock-like arithmetic), and identification of prime numbers (numbers divisible by only 1 and itself).</p>
+
+        Instruction:
+        1. Always include Introduction, Understanding Even and Odd Numbers, Properties of Even and Odd Numbers, Importance of Even and Odd Numbers, Role of Even and Odd Numbers in Mathematics, Application of Even and Odd Numbers in Daily Life Scenarios, Significance of Even and Odd Numbers in Problem-Solving,Recognizing Even and Odd Numbers,Practice Exercises to Reinforce Recognition Skills,Practical Examples Demonstrating the Application of Even and Odd Number Properties in Problem-Solving, Conclusion and Frequently Asked Questions (FAQs).
+        2. Always put the h3 tag between each sub heading and strong tag between each context . For eg: "<h3>sub heading</h3>, <strong>context</strong>.
+        4. Always generate article of around 5000-6000 words.
+
+
+        {context}
+        """

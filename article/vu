@@ -1,0 +1,286 @@
+
+
+
+# def update_sheet(sheet, row_number, status, date, time, user_name=""):
+#     try:
+#         status_col = sheet.find("Status").col
+#         date_col = sheet.find("Date").col
+#         time_col = sheet.find("Time").col
+#         user_col = sheet.find("User").col
+
+#         sheet.update_cell(row_number, status_col, status)
+#         sheet.update_cell(row_number, date_col, date)
+#         sheet.update_cell(row_number, time_col, time)
+
+#         if user_name:
+#             sheet.update_cell(row_number, user_col, user_name)
+#     except Exception as e:
+#         print(f"Error updating Google Sheet: {str(e)}")
+
+# def process_sheet(sheet, generate_content_fn, website):
+#     all_rows = list(enumerate(sheet.get_all_records(), start=2))
+#     date = datetime.now().strftime("%Y-%m-%d")
+#     time = datetime.now().strftime("%H:%M:%S")
+
+#     created_contents, failed_contents = [], []
+
+#     for row_number, row_data in all_rows:
+#         if row_data.get("Status", "") == "Posted successfully!":
+#             continue
+
+#         content = generate_content_fn(row_data)
+
+#         if content:
+#             response_status = post_to_wordpress(content, website)
+
+#             if response_status in [200, 201]:
+#                 update_sheet(sheet, row_number, "Posted successfully!", date, time, row_data.get("User", ""))
+#                 created_contents.append(row_data.get("article_title", ""))
+#             else:
+#                 update_sheet(sheet, row_number, "Post Failed!", date, time)
+#                 failed_contents.append(row_data.get("article_title", ""))
+#         else:
+#             update_sheet(sheet, row_number, "Content Generation Failed!", date, time)
+#             failed_contents.append(row_data.get("article_title", ""))
+            
+#     return f"Created: {len(created_contents)}, Failed: {len(failed_contents)}"
+
+
+# def post_to_wordpress(content):
+#     try:
+#         payload = json.dumps(content)
+#         conn = http.client.HTTPSConnection(WP_HOST)
+#         conn.request("POST", WP_ENDPOINT, payload, WP_HEADERS)
+#         response = conn.getresponse()
+#         print(f"Response: {response.status}")
+#         return response.status
+#     except Exception as e:
+#         print(f"Error posting to WordPress: {str(e)}")
+#         return None
+
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from google.oauth2.service_account import Credentials
+# from googleapiclient.discovery import build
+# from gspread.exceptions import SpreadsheetNotFound
+# import gspread
+# import json
+# import http.client
+# from datetime import datetime
+# from Utils.Chimpvine.article import article_chimpvine
+# from django.shortcuts import render, redirect
+
+
+
+# SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
+# CREDENTIALS_FILE = "credentials.json"
+# WP_HEADERS = {
+#     'Content-Type': 'application/json',
+#     'Authorization': 'Basic bmlyYWphbmFkbWluOmRRRVogU3VqWSBPYjFtIHRLVFcgR2JxRCBaeFd1'
+# }
+# WP_ENDPOINT = "/wp-json/wp/v2/article"
+# WP_HOST = "site.chimpvine.com"
+
+# # Initialize Google Sheets client
+# creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
+# client = gspread.authorize(creds)
+
+
+# def article(request):
+#     return render(request, 'article.html')
+
+
+
+# def update_sheet(sheet, row_number, status, date, time, user_name=""):
+#     try:
+#         status_col = sheet.find("Status").col
+#         date_col = sheet.find("Date").col
+#         time_col = sheet.find("Time").col
+#         user_col = sheet.find("User").col
+
+#         sheet.update_cell(row_number, status_col, status)
+#         sheet.update_cell(row_number, date_col, date)
+#         sheet.update_cell(row_number, time_col, time)
+
+#         if user_name:
+#             sheet.update_cell(row_number, user_col, user_name)
+#     except Exception as e:
+#         print(f"Error updating Google Sheet: {str(e)}")
+
+# def post_to_wordpress(content):
+#     try:
+#         payload = json.dumps(content)
+#         conn = http.client.HTTPSConnection(WP_HOST)
+#         conn.request("POST", WP_ENDPOINT, payload, WP_HEADERS)
+#         response = conn.getresponse()
+#         print(f"Response: {response.status}")
+#         return response.status
+#     except Exception as e:
+#         print(f"Error posting to WordPress: {str(e)}")
+#         return None
+
+# def process_sheet(sheet, generate_content_fn):
+#     all_rows = list(enumerate(sheet.get_all_records(), start=2))
+#     date = datetime.now().strftime("%Y-%m-%d")
+#     time = datetime.now().strftime("%H:%M:%S")
+
+#     created_contents, failed_contents = [], []
+
+#     for row_number, row_data in all_rows:
+#         if row_data.get("Status", "") == "Posted successfully!":
+#             continue
+
+#         content = generate_content_fn(row_data)
+
+#         if content:
+#             response_status = post_to_wordpress(content)
+
+#             if response_status in [200, 201]:
+#                 update_sheet(sheet, row_number, "Posted successfully!", date, time, row_data.get("User", ""))
+#                 created_contents.append(row_data.get("article_title", ""))
+#             else:
+#                 update_sheet(sheet, row_number, "Post Failed!", date, time)
+#                 failed_contents.append(row_data.get("article_title", ""))
+#         else:
+#             update_sheet(sheet, row_number, "Content Generation Failed!", date, time)
+#             failed_contents.append(row_data.get("article_title", ""))
+
+#     return f"Created: {len(created_contents)}, Failed: {len(failed_contents)}"
+
+# @csrf_exempt
+# def generate_and_post_article(request):
+#     if request.method == 'POST':
+#         try:
+#             data = json.loads(request.body)
+#             google_sheet_ip = data.get('google_sheet_ip')
+#             website = data.get('website')
+
+#             if not google_sheet_ip or not website:
+#                 return JsonResponse({'error': 'Invalid input data.'}, status=400)
+            
+#             print(google_sheet_ip)
+
+#             workbook = client.open_by_key(google_sheet_ip)
+#             sheet = workbook.sheet1
+
+#             if website == 'Chimpvine.com':
+#                 result = process_sheet(sheet, lambda row: article_chimpvine(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")))
+#             elif website == 'dansonsolutions.com':
+#                 result = process_sheet(sheet, lambda row: article_chimpvine(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")))
+#             else:
+#                 return JsonResponse({'error': 'Invalid website selection.'}, status=400)
+
+#             return JsonResponse({'result': result}, status=200)
+
+#         except SpreadsheetNotFound:
+#             return JsonResponse({'error': 'Google Sheet not found.'}, status=404)
+#         except Exception as e:
+#             return JsonResponse({'error': str(e)}, status=500)
+
+#     return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
+# def home(request):
+#     return JsonResponse({"message": "Welcome to the Article Generator API!"})
+
+
+
+# def process_sheet(sheet, generate_content_fn):
+#     all_rows = list(enumerate(sheet.get_all_records(), start=2))
+#     date = datetime.now().strftime("%Y-%m-%d")
+#     time = datetime.now().strftime("%H:%M:%S")
+
+#     created_contents, failed_contents = [], []
+
+#     for row_number, row_data in all_rows:
+#         if row_data.get("Status", "") == "Posted successfully!":
+#             continue
+
+#         content = generate_content_fn(row_data)
+
+#         if content:
+#             response_status = post_to_wordpress(content)
+
+#             if response_status in [200, 201]:
+#                 update_sheet(sheet, row_number, "Posted successfully!", date, time, row_data.get("User", ""))
+#                 created_contents.append(row_data.get("article_title", ""))
+#             else:
+#                 update_sheet(sheet, row_number, "Post Failed!", date, time)
+#                 failed_contents.append(row_data.get("article_title", ""))
+#         else:
+#             update_sheet(sheet, row_number, "Content Generation Failed!", date, time)
+#             failed_contents.append(row_data.get("article_title", ""))
+
+#     return f"Created: {len(created_contents)}, Failed: {len(failed_contents)}"
+/////////////////////////////////////////////////////////////////frb 4 
+
+
+
+
+# def post_to_wordpress(content, website, ):
+#     print (content)
+#     print(website)
+#     try:
+#         payload = json.dumps(content)
+#         content['status'] = 'draft'
+        
+
+
+#         # Determine WordPress configuration based on website
+#         if website == 'Preppers360.com':
+#             wp_host = "preppers360.com"
+#             wp_endpoint = "/wp-json/wp/v2/posts"
+#             wp_headers = {
+#                 'Content-Type': 'application/json',
+#                 'Authorization': 'Basic cHJlcHBlcnNhZG1pbjpUR3hsIHhWbjggbDIwdSA3YmtuIHJQM0QgbUVoTg=='
+#             }
+#         elif website == 'mathfun.us':
+#             wp_host = "mathfun.us"
+#             wp_endpoint = "/wp-json/wp/v2/posts"
+#             wp_headers = {
+#                 'Content-Type': 'application/json',
+#                 'Authorization': 'Basic c2hyZXlhOjVvMUMgRnRTWCBxMnJNIFlhRjEgWDh4ViBkUVAx',
+#                 'Cookie': 'nfdbrandname=hostgator'
+#             }            
+            
+#         elif website == 'Dansonsolutions.com':
+#             wp_host = "dansonsolutions.com"
+#             wp_endpoint = "/wp-json/wp/v2/posts"
+#             wp_headers = {
+#                 'Content-Type': 'application/json',
+#                 'Authorization': 'Basic YOUR_DANSONSOLUTIONS_AUTH_TOKEN'
+#             }
+#         elif website == 'chimpvine.com':
+#             print("hello")
+#             wp_host = "site.chimpvine.com"
+#             wp_endpoint = "/wp-json/wp/v2/article"
+#             wp_headers = {
+#                 'Content-Type': 'application/json',
+#                 'Authorization': 'Basic bmlyYWphbmFkbWluOmRRRVogU3VqWSBPYjFtIHRLVFcgR2JxRCBaeFd1'
+#             }
+#         elif website == 'visitnepal360.com':
+#             wp_host = "visitnepal360.com"
+#             wp_endpoint = "/wp-json/wp/v2/posts"
+#             wp_headers = {
+#                 'Content-Type': 'application/json',
+#                 'Authorization': 'Basic dmlzaXRuZXBhbGFkbWluOlY3czIgUnJ2SiA5VjVRIGo2RzEgQ2RYdCBLckdr'
+#             }
+#         elif website == 'dansonconsultancy.com':
+#             wp_host = "dansonconsultancy.com"
+#             wp_endpoint = "/wp-json/wp/v2/blog"
+#             wp_headers = {
+#                 'Content-Type': 'application/json',
+#                 'Authorization': 'Basic Auth'
+#             }           
+#         else:
+#             return None  # Invalid website or unsupported website
+
+#         # Send the request to the correct WordPress site
+#         conn = http.client.HTTPSConnection(wp_host)
+#         conn.request("POST", wp_endpoint, payload, wp_headers)
+#         response = conn.getresponse()
+#         print(f"Response: {response.status}")
+#         return response.status
+#     except Exception as e:
+#         print(f"Error posting to WordPress: {str(e)}")
+#         return None
+

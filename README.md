@@ -1,39 +1,37 @@
-One Stop Portal
+# One Stop Portal
 
-Overview
-
+## Overview
 One Stop Portal is a versatile tool designed to streamline content creation and quiz management. It features two main functionalities:
 
-Article Generation Tool: Automates article creation using Google Sheets.
+1. **Article Generation Tool**: Automates article creation using Google Sheets.
+2. **Quiz App**: Simplifies quiz generation based on Google Sheets data.
 
-Quiz App: Simplifies quiz generation based on Google Sheets data.
+---
 
-Features
+## Features
 
-1. Article Generation Tool
+### 1. Article Generation Tool
+- **Input:** Requires Google Sheet ID and website names.
+- **Functionality:** Uses sheet automation to generate articles efficiently for multiple websites.
 
-Input: Requires Google Sheet ID and website names.
+### 2. Quiz App
+- **Input:** Requires only the Google Sheet ID.
+- **Functionality:** Generates quizzes automatically based on the data provided in the Google Sheet.
 
-Functionality: Uses sheet automation to generate articles efficiently for multiple websites.
+---
 
-2. Quiz App
+## How to Use
 
-Input: Requires only the Google Sheet ID.
+### For Article Generation:
+```bash
+# Input the Google Sheet ID and Website Names
+python article_generator.py --sheet_id YOUR_SHEET_ID --websites "Website1, Website2"
+```
 
-Functionality: Generates quizzes automatically based on the data provided in the Google Sheet.
+### For Quiz App:
+```bash
+# Input the Google Sheet ID
+python quiz_app.py --sheet_id YOUR_SHEET_ID
+```
 
-How to Use
 
-For Article Generation:
-
-Enter the Google Sheet ID.
-
-Provide the list of website names where articles will be published.
-
-The portal will automate the article generation process.
-
-For Quiz App:
-
-Enter the Google Sheet ID.
-
-The app will process the data and generate quizzes automatically.

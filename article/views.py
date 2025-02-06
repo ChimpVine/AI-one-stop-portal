@@ -53,12 +53,6 @@ mathtricksjr_password = os.getenv('WP_PASSWORD_MATHTRICKSJr')
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 CREDENTIALS_FILE = "credentials.json"
-# WP_HEADERS = {
-#     'Content-Type': 'application/json',
-#     'Authorization': 'Basic bmlyYWphbmFkbWluOmRRRVogU3VqWSBPYjFtIHRLVFcgR2JxRCBaeFd1'
-# }
-# WP_ENDPOINT = "/wp-json/wp/v2/article"
-# WP_HOST = "site.chimpvine.com"
 
 # Initialize Google Sheets client
 creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
@@ -67,120 +61,25 @@ client = gspread.authorize(creds)
 
 def article(request):
     return render(request, 'article.html')
-def update_sheet(sheet, row_number, status, date, time, user=""):
+def update_sheet(sheet, row_number, status, date, time, email):
     try:
         status_col = sheet.find("Status").col
         date_col = sheet.find("Date").col
         time_col = sheet.find("Time").col
-        user_col = sheet.find("User").col
+        email_col = sheet.find("User").col
 
         # Update status, date, time, and user
         sheet.update_cell(row_number, status_col, status)
         sheet.update_cell(row_number, date_col, date)
         sheet.update_cell(row_number, time_col, time)
 
-        if user:
-            sheet.update_cell(row_number, user_col, user)
-            print(f"Updated User: {user}")
+        if email:
+            sheet.update_cell(row_number, email_col, email)
+            print(f"Updated User: {email}")
 
     except Exception as e:
         print(f"Error updating sheet: {str(e)}")
 
-# import http.client
-# import json
-# import base64
-
-# def post_to_wordpress(content, website):
-#     print(f"Posting to {website}...")
-
-#     try:
-#         # Convert content to JSON and set status to draft
-#         content['status'] = 'draft'
-#         payload = json.dumps(content)
-        
-        
-        
-#         # Get credentials from environment
-#         if website == "chimpvine.com":
-#             username = os.getenv('WP_USERNAME_CHIMPVINE')
-#             password = os.getenv('WP_PASSWORD_CHIMPVINE')
-#         elif website == "dansonsolutions.com":
-#             username = os.getenv('WP_USERNAME_DANSONSOLUTIONS')
-#             password = os.getenv('WP_PASSWORD_DANSONSOLUTIONS')
-#         elif website == "preppers360.com":
-#             username = os.getenv('WP_USERNAME_PREPPERS360')
-#             password = os.getenv('WP_PASSWORD_PREPPERS360')
-#         elif website == "visitnepal360.com":
-#             username = os.getenv('WP_USERNAME_VISITNEPAL')
-#             password = os.getenv('WP_PASSWORD_VISITNEPAL')
-#         elif website == "dansonconsultancy.com":
-#             username = os.getenv('WP_USERNAME_DANSONCONSULTANCY')
-#             password = os.getenv('WP_PASSWORD_DANSONCONSULTANCY')
-#         elif website == "mathfun.com":
-#             username = os.getenv('WP_USERNAME_MATHFUN')
-#             password = os.getenv('WP_PASSWORD_MATHFUN')
-#         elif website == "mathtricksjr.com":
-#             username = os.getenv('WP_USERNAME_MATHTRICKSJr')
-#             password = os.getenv('WP_PASSWORD_MATHTRICKSJr')
-#         else:
-#             print("Invalid or unsupported website")
-#             return None
-
-#         # Encode authentication
-#         auth_string = f"{username}:{password}"
-#         auth_encoded = base64.b64encode(auth_string.encode()).decode()
-
-#         # Define website configurations
-#         wp_sites = {
-#             'preppers360.com': "preppers360.com",
-#             'mathfun.com': "mathfun.us",
-#             'dansonsolutions.com': "dansonsolutions.com",
-#             'chimpvine.com': "site.chimpvine.com",
-#             'visitnepal360.com': "visitnepal360.com",
-#             'dansonconsultancy.com': "dansonconsultancy.com",
-#             'mathtricksjr.com':"mathtricksjr.com"
-            
-#         }
-
-#         # Validate website
-#         if website not in wp_sites:
-#             print("Invalid or unsupported website")
-#             return None
-
-#         wp_host = wp_sites[website]
-#         wp_endpoint = "/wp-json/wp/v2/posts" if website != "chimpvine.com" else "/wp-json/wp/v2/article"
-
-#         # Set headers
-#         wp_headers = {
-#             'Content-Type': 'application/json',
-#             'Authorization': f'Basic {auth_encoded}'
-#         }
-
-#         # If the website is mathfun.us, add extra cookie header
-#         if website == "mathfun.com":
-#             print("this is mathfun")
-#             wp_headers = {
-#                 'Content-Type': 'application/json',
-#                 'Authorization': 'Basic c2hyZXlhOjVvMUMgRnRTWCBxMnJNIFlhRjEgWDh4ViBkUVAx',
-#                 'Cookie': 'nfdbrandname=hostgator'
-#             }
-#             # wp_headers['Cookie'] = 'nfdbrandname=hostgator'
-
-#         # Send request
-#         conn = http.client.HTTPSConnection(wp_host)
-#         conn.request("POST", wp_endpoint, payload, wp_headers)
-#         response = conn.getresponse()
-#         response_data = response.read().decode()
-
-#         print(f"Response: {response.status} {response.reason}")
-#         print(f"Response Data: {response_data}")
-
-#         return response.status, response_data
-
-#     except Exception as e:
-#         print(f"Error posting to WordPress: {str(e)}")
-#         return None
-    
 import base64
 import json
 import os
@@ -269,7 +168,7 @@ def post_to_wordpress(content, website):
         return None
 
     
-def process_sheet(sheet, generate_content_fn, website,request):
+def process_sheet(sheet, generate_content_fn, website,email):
     all_rows = list(enumerate(sheet.get_all_records(), start=2))
     date = datetime.now().strftime("%Y-%m-%d")
     time = datetime.now().strftime("%H:%M:%S")
@@ -281,24 +180,23 @@ def process_sheet(sheet, generate_content_fn, website,request):
 
         content = generate_content_fn(row_data)
         print(content)
-        user = request.user.username  # Get the logged-in user's username
-        print(user)
+
 
         if content:
             response_status, response_data = post_to_wordpress(content, website)
             print(f"Response Status: {response_status}, Response Data: {response_data}")
 
             if response_status in [200, 201]:
-                update_sheet(sheet, row_number, "Drafted successfully!", date, time, user)
+                update_sheet(sheet, row_number, "Drafted successfully!", date, time, email)
                 created_contents.append(row_data.get("article_title", ""))
                 print("Article posted successfully!")
             else:
-                update_sheet(sheet, row_number, "Post Failed!", date, time, user)
+                update_sheet(sheet, row_number, "Post Failed!", date, time, email)
                 failed_contents.append(row_data.get("article_title", ""))
                 print("Failed to post the article.")
 
         else:
-            update_sheet(sheet, row_number, "Content Generation Failed!", date, time, user)
+            update_sheet(sheet, row_number, "Content Generation Failed!", date, time, email)
             failed_contents.append(row_data.get("article_title", ""))
             print("Content generation failed.")
 
@@ -315,7 +213,7 @@ def generate_and_post_article(request):
             data = json.loads(request.body)
             google_sheet_ip = data.get('google_sheet_ip')
             website = data.get('website', '').strip().lower()  # Normalize case
-
+            email=data.get('email',request.user.email)
             print(f"Received data: {data}")  # Debugging
 
             if not google_sheet_ip or not website:
@@ -326,19 +224,19 @@ def generate_and_post_article(request):
             sheet = workbook.sheet1
 
             if website == 'chimpvine.com':
-                result = process_sheet(sheet, lambda row: article_chimpvine(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_chimpvine(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'dansonsolutions.com':
-                result = process_sheet(sheet, lambda row: article_Dansonsolutions(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_Dansonsolutions(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'preppers360.com':
-                result = process_sheet(sheet, lambda row: article_Preppers(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_Preppers(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'visitnepal360.com':
-                result = process_sheet(sheet, lambda row: article_Visitnepal(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_Visitnepal(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'dansonconsultancy.com':
-                result = process_sheet(sheet, lambda row: article_Dansonconsultancy(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_Dansonconsultancy(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'mathfun.com':
-                result = process_sheet(sheet, lambda row: article_mathfun(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_mathfun(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'mathtricksjr.com':
-                result = process_sheet(sheet, lambda row: article_mathtricksjr(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, request)
+                result = process_sheet(sheet, lambda row: article_mathtricksjr(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
                               
             else:
                 return JsonResponse({'error': 'Invalid website selection.'}, status=400)

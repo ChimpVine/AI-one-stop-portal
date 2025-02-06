@@ -101,6 +101,7 @@
 
         const googleSheetId = document.getElementById('articleGoogleSheetId').value;
         const website = document.getElementById('articleWebsite').value;
+        const userEmail = "{{ request.user.email }}";  // Get the logged-in user's email
 
         const response = await fetch('/article/generate_and_post_article/', {
             method: 'POST',
@@ -109,7 +110,8 @@
             },
             body: JSON.stringify({
                 google_sheet_ip: googleSheetId,
-                website: website
+                website: website,
+                email:userEmail
             })
         });
 

@@ -1,5 +1,7 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from gspread.exceptions import SpreadsheetNotFound
@@ -58,7 +60,7 @@ CREDENTIALS_FILE = "credentials.json"
 creds = Credentials.from_service_account_file(CREDENTIALS_FILE, scopes=SCOPES)
 client = gspread.authorize(creds)
 
-
+@login_required
 def article(request):
     return render(request, 'article.html')
 def update_sheet(sheet, row_number, status, date, time, email):

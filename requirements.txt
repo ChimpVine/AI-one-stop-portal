@@ -1,0 +1,10 @@
+Django>=4.0
+google-auth>=2.0.0
+google-auth-oauthlib>=0.4.0
+google-api-python-client>=2.0.0
+gspread>=5.0.0
+requests>=2.0.0
+python-dotenv>=1.0.0
+djangorestframework>=3.0.0
+djangorestframework-simplejwt>=5.0.0
+langchain-openai>=0.1.0

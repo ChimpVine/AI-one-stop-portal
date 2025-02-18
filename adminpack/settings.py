@@ -26,7 +26,13 @@ SECRET_KEY = 'django-insecure-7-dezmk#j06r(4b0_3atxu=&cf!tyaf+v4y1ed^o(5)8*_oq$)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "automation.chimpvine.com",
+    "www.automation.chimpvine.com",
+    "your-server-ip",  # (Optional) Add your server's IP if needed
+    "127.0.0.1",  # Allow localhost
+    "localhost",
+]
 
 
 # Application definition

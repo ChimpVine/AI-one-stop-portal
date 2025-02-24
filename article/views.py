@@ -213,18 +213,18 @@ def generate_and_post_article(request):
     if request.method == 'POST':
         try:
             data = json.loads(request.body)
-            google_sheet_ip = data.get('google_sheet_ip')
-            website = data.get('website', '').strip().lower()  # Normalize case
-            email=data.get('email',request.user.email)
-            print(f"Received data: {data}")  # Debugging
+            google_sheet_id = data.get('google_sheet_id')  # Fixed the key name
+            website = data.get('website', '').strip().lower()  # Ensure consistency here
+            email = data.get('email', request.user.email)
 
-            if not google_sheet_ip or not website:
+            if not google_sheet_id or not website:
                 return JsonResponse({'error': 'Invalid input data.'}, status=400)
-            
-            print(f"Opening Google Sheet: {google_sheet_ip}")
-            workbook = client.open_by_key(google_sheet_ip)
+
+            print(f"Opening Google Sheet: {google_sheet_id}")
+            workbook = client.open_by_key(google_sheet_id)  # Fixed the key name here as well
             sheet = workbook.sheet1
 
+          
             if website == 'chimpvine.com':
                 result = process_sheet(sheet, lambda row: article_chimpvine(row.get("article_title", ""), row.get("seo_keywords", ""), row.get("language", "")), website, email)
             elif website == 'dansonsolutions.com':
@@ -250,6 +250,9 @@ def generate_and_post_article(request):
         except Exception as e:
             print(f"Unexpected error: {str(e)}")  # Debugging
             return JsonResponse({'error': str(e)}, status=500)
+
+    return JsonResponse({'error': 'Invalid request method.'}, status=405)
+
 
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
 

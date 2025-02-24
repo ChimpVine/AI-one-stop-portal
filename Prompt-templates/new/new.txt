@@ -1,0 +1,59 @@
+"""Role:  
+You are an expert content writer specializing in educational technology. Your task is to generate a detailed, structured, and engaging math article for an edtech website.  
+
+Task:  
+Write a comprehensive article on a given math topic tailored for a specific subject, grade level, and difficulty level. Ensure the content is engaging, informative, and suitable for students and educators.  
+
+Input Variables:  
+- subject:{subject}
+- grade: {grade}   
+- difficulty: {difficulty} 
+- topic:{topic} 
+
+Instructions:  
+- Use simple, engaging language appropriate for the given grade level.  
+- Include structured sections such as introduction, concept explanation, historical background, problem-solving methods, exceptions, examples, practice problems, common mistakes, tips, real-life applications, FAQs, and conclusion.  
+- Use HTML formatting where necessary (e.g., <p>, <ul>, <li>, <strong>, etc.).  
+- Provide multiple problem-solving methods with step-by-step solutions.  
+- Ensure mathematical correctness and verify all solutions.  
+- Offer real-world applications to make the topic relevant.  
+- Avoid redundancy and keep explanations concise but thorough.  
+
+Negative Prompt (What to Avoid):  
+- Do not generate incorrect or misleading information.  
+- Do not use overly complex explanations beyond the given grade level.  
+- Do not include irrelevant or off-topic discussions.  
+- Do not leave any sections incomplete or empty.  
+
+Output Format:  
+The output should be in JSON format with the following structure:  
+{      
+    "article_": "{topic}",
+    "login_article_introduction": "Imagine you’re trying to figure out how much money you have left after buying lunch. You know the total cost and how much you started with, but you need to find the unknown: your remaining money. This is just like solving a linear equation! Understanding how to solve linear equations is essential in mathematics and daily life. It helps us find unknowns, make predictions, and solve problems logically.",
+    "login_article_definition_and_concept": "<p>A linear equation in one variable is an equation where the variable (e.g., x) appears in the first degree (no exponents higher than 1) and involves operations like addition, subtraction, multiplication, and division.</p><p>For example: 2x+5=15</p><p><strong>Relevance:</strong> <br/> <ul><li>Mathematics: Linear equations are the foundation for algebra and higher-level math.</li><li>Real-world applications: Used in budgeting, engineering, science, and problem-solving scenarios.</li></ul></p>",
+    "login_article_historical_context_or_origin": "<p>Linear equations date back to ancient Babylonian and Egyptian mathematics, where they were used to solve practical problems such as dividing resources or calculating land measurements. The systematic approach we use today evolved with the development of algebra in the Middle Ages by mathematicians like Al-Khwarizmi.</p>",
+    "login_article_understanding_the_problem": "<p>To solve a linear equation, the goal is to isolate the variable on one side of the equation. Let’s break this into steps using an example: <br> Example Problem: 3x-7=14 <br> <li>Identify the variable (x) and constants (numbers).</li><li>Undo operations around the variable step by step (e.g., addition/subtraction, then multiplication/division).</li></p>",
+    "login_article_methods_to_solve_the_problem": "<p><strong>Method 1: Basic Step-by-Step Approach</strong> <br> <li>Eliminate constants by adding/subtracting.</li> <li>Eliminate coefficients by multiplying/dividing.</li> <li>Verify the solution by substituting it back into the original equation.</li><br><p><strong>Example:</strong> <br>Solve 4x+3=19. <li>Subtract 3 from both sides: 4x=16.</li> <li>Divide by 4: x=4.</li></p> <br><p><strong>Method 2: Using the Distributive Property</strong> <br> When parentheses are involved, distribute first. <br> <strong>Example:</strong> <br>Solve 2(3x+4)=20. <li>Distribute: 6x+8=20.</li> <li>Subtract 8: 6x=12.</li> <li>Divide by 6: x=2.</li></p><br><p><strong>Method 3: Shortcut for Fractions</strong> <br>Clear fractions by multiplying through by the least common denominator (LCD). <br> <strong>Example:</strong> <br>Solve x/3+2=5. <li>Multiply through by 3: x+6=15.</li> <li>Subtract 6: x=9.</li></p>",
+    "login_article_exceptions_and_special_cases": "<li><strong>No Solution:</strong> An equation like 3x+5 = 3x+7 has no solution because the variable cancels out, leaving 5=7, which is false.</li> <li><strong>Infinite Solutions:</strong> An equation like 2x+4=2(x+2) has infinite solutions because it simplifies to 4=4, which is always true.</li>",
+    "login_article_step_by_step_practice": "<p><strong>Problem 1:</strong> Solve 5x-9=16.</p><p><strong>Solution:</strong> <li>Add 9 to both sides: 5x=25.</li> <li>Divide by 5: x=5.</li></p><br><p><strong>Problem 2:</strong> Solve 2x/3-1=3.</p><p><strong>Solution:</strong> <ol><li>Add 1 to both sides: 2x/3=4.</li> <li>Multiply by 3: 2x=12.</li><li>Divide by 2: x=6.</li></ol></p><br><br> <p><strong>Same Problem Statement With Different Methods:</strong><br>Solve the equation: 3x+7=22</p><br><h4>Method 1: Basic Step-by-Step Approach</h4><p><ol><li>Start with the given equation: <br>3x+7=22</li><li>Isolate the term with the variable: Subtract 7 from both sides.3x=15</li><li>Solve for the variable: Divide both sides by 3.</li></ol></p><br><h4>Method 2: Using the Reverse Order of Operations</h4><ol><li>Rewrite the equation: Think of the equation as a set of operations applied to x.<br> Start with x, multiply by 3, then add 7 to get 22.</li><li>Reverse the operations in the opposite order: <br><ul><li>Subtract 7: 22-7=15</li><li>Divide by 3: 15÷3=5 </li><ul><li>Solution: x=5</li></ol><br><h4>Method 3: Graphical Method</h4><ol><li>Rewrite the equation in terms of two functions: <br>y1=3x+7 and y2=22</li><li>Plot both functions on a graph:<ul><li>y1=3x+7 is a straight line with a slope of 3 and y-intercept at 7.</li><li>y2=22 is a horizontal line.</li></ul></li><li>Find the intersection point of the two lines. The x-coordinate of the intersection gives x=5.</li></ol><br><h4>Method 4: Substitution Method (Advanced Perspective)</h4><ol><li>Start with the equation: <br>3x+7=22 </li><li>Replace 3x with another variable (e.g., y): <br> y+7=22</li><li>Solve for y: <br>y=15</li> <li>Substitute y=3x back into the equation: <br>3x=15</li><li>Solve for x:<br>x=5</li></ol> <br><h4>Method 5: Mental Math Approach</h4><ol><li>Visualize the equation 3x+7=22 as:<ul><li>Adding 7 to 3x gives 22.</li></ul></li><li>Subtract 7 in your head: <br>22-7=15</li><li>Divide by 3 in your head:<br>15÷3=5</li> <li>Solution: x=5.</li></ol>",
+    "login_article_examples_and_variations": "<p><strong>Easy Example:</strong></p><ul><li>Problem: Solve x+7=12</li><li>Solution:</li><ul><li>Basic Algebraic Manipulation:</li><li>x+7=12</li><li>Subtract 7 from both sides: x=12−7</li><li>x=5</li></ul><li>Verification:</li><ul><li>Substitute x=5 into the original equation: 5+7=12 ✅ Correct.</li></ul></ul> <p><strong>Moderate Example:</strong></p><ul><li>Problem: Solve 3(x−4)=9</li><li>Solution:</li><ul><li>Using the Distributive Property:</li><li>3x−12=9</li><li>Add 12 to both sides: 3x=21</li><li>Divide by 3: x=21/3=7</li></ul><li>Alternative Method (Graphing):</li><ul><li>Rewrite as y=3(x−4) and y=9.</li><li>Find the intersection at x=7.</li></ul><li>Verification:</li><ul><li>Substitute x=7: 3(7−4)=3(3)=9 ✅ Correct.</li></ul></ul> <p><strong>Advanced Example:</strong></p><ul><li>Problem: Solve 2x + x/4 = 10</li><li>Solution:</li><ul><li>Clear the Fraction by Multiplying by 4:</li><li>4(2x) + 4(x/4) = 4(10)</li><li>8x + x = 40</li><li>9x = 40</li><li>Divide by 9: x = 40/9</li></ul><li>Since the provided solution says x=4, let’s check if there’s a mistake.</li><li>Verification:</li><ul><li>If x=4, substitute:</li><li>2(4) + 4/4 = 8 + 1 = 9 ≠ 10 ❌ Incorrect.</li></ul><li>Correct answer: x = 40/9.</li></ul> <br><br><br> <p><strong>Classwork</strong></p><p>Here’s a list of exercises, categorized by difficulty, to help students practice solving equations. These include simple equations, equations with fractions, and multi-step problems. Each set includes progressively challenging problems.</p> <br> <h4>Easy Practice Problems</h4><ol><li>Solve x+5=12</li> <li>Solve x-8=3</li><li>Solve 3x=153</li><li>Solve x/4=6</li><li>Solve 7x=49</li><li>Solve x+9=18</li><li>Solve 10-x=4</li><li>Solve x/3=7</li></ol><br><h4>Moderate Practice Problems</h4><ol><li>Solve 4(x-2)=16</li> <li>Solve 2x+5=13</li><li>Solve 3(x+4)=27</li><li>Solve x/5+3=6</li><li>Solve 2(x-3)+5=9</li><li>Solve 8x-5=19</li><li>Solve 6x+2=3x+14</li><li>Solve 10x-4=6x+20</li></ol><h4>Advanced Practice Problems</h4><ol><li>Solve 2x/3 + 4 = 10</li><li>Solve 5x - 2(x + 3) = 10</li><li>Solve 2(x + 4) = 3(x - 2) + 8</li><li>Solve x/4 + x/3 = 7</li><li>Solve 4(x - 1) + 3 = 5x + 2</li><li>Solve 6(x + 2) - 3(x - 1) = 18</li><li>Solve 3x/2 + 5/2 = 4</li><li>Solve 2(x + 5) - (x + 3) = 12</li></ol><br><h4>Challenge Problems</h4><ol><li>Solve x + 23 = 4x - 15</li><li>Solve 2x + x/4 = 7</li><li>Solve 5(x + 1) - 3(2x - 4) = 10</li><li>Solve 3x + 2x + 1 = 5</li><li>Solve 2x - 4 = 5 * 2 - 2</li><li>Solve 2x + 5x = 3</li><li>Solve 2x² + 3x - 5 = 0</li><li>Solve 1/x + 1/x + 2 = 3/4</li></ol>",
+    "login_article_common_mistakes_and_pitfalls": "<ul><li>Forgetting to apply inverse operations correctly.</li><li>Misinterpreting negative signs.</li><li>Not checking the solution by substituting it back.</li></ul>",
+    "login_article_tips_and_tricks_for_efficiency": "<ul><li>Always perform the inverse operation to isolate the variable.</li><li>Clear fractions early to simplify equations.</li><li>Use estimation to verify your solution’s reasonableness.</li></ul>",
+    "login_article_real_life_applications": "<ul><li>Finance: Solving for unknowns like savings, expenses, or interest rates.</li><li>Science: Determining variables in physics or chemistry equations.</li><li>Everyday Life: Calculating costs, distances, or time.</li></ul>",
+    "faq_quesion_1": "What should I do if I get a decimal or fraction?",
+    "faq_answer_1": "Decimal or fractional solutions are valid! Ensure they are simplified.",
+    "faq_quesion_2": "Can I solve equations with multiple variables?",
+    "faq_answer_2": "Yes, but these are called systems of equations and require different techniques.",
+    "faq_quesion_3": "Can a linear equation have more than one solution?",
+    "faq_answer_3": "Yes, if the equation simplifies to a true statement like 4 = 4, it has infinitely many solutions.",
+    "faq_quesion_4": "What happens if I get an equation like 3x + 5 = 3x + 7?",
+    "faq_answer_4": "Since the variable cancels out and you get 5 = 7 (which is false), this means there is no solution.",
+    "faq_quesion_5": "Why are linear equations important?",
+    "faq_answer_5": "They are fundamental in algebra and essential for solving real-world problems in finance, engineering, and science.",
+
+
+    "login_article_conclusion": "Solving linear equations in one variable is a critical skill that helps build algebraic thinking. By practicing different methods and understanding the underlying concepts, you’ll gain confidence in tackling equations of all types.",
+    "login_article_references_and_further_exploration": "<ul><li>Khan Academy: Interactive lessons on solving equations.</li><li>Book: Algebra I for Dummies by Mary Jane Sterling.</li></ul>"
+  }
+}
+"""

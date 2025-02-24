@@ -6,7 +6,7 @@ import json
 load_dotenv()
 
 # Get the OpenAI API key from environment variables
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY12')
 def quiz_json(topic, subject, number, difficulty, grade, description, image_url):
     llm = ChatOpenAI(
         model="gpt-4o-mini",

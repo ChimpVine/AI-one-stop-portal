@@ -1,9 +1,7 @@
-# user/models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from .manager import CustomUserManager
 from .roles import Role
-from rest_framework_simplejwt.tokens import RefreshToken
 
 class CustomUser(AbstractUser):
     email = models.EmailField(max_length=50, unique=True)
@@ -21,10 +19,3 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return f"[{self.id}: {self.email}]"
-
-    def tokens(self):
-        refresh = RefreshToken.for_user(self)
-        return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token)
-        }

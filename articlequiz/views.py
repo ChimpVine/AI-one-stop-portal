@@ -86,9 +86,9 @@ def process_quiz_article(request):
         sheet_client = gspread.authorize(creds)
         sheet = sheet_client.open_by_key(SPREADSHEET_ID).worksheet(worksheet_name)
 
-        # Create folders for saving JSON files
-        output_folder = "generated_content"
-        os.makedirs(output_folder, exist_ok=True)
+        # # Create folders for saving JSON files
+        # output_folder = "generated_content"
+        # os.makedirs(output_folder, exist_ok=True)
 
         # Read spreadsheet data
         rows = sheet.get_all_values()
@@ -167,19 +167,19 @@ def process_quiz_article(request):
                     skipped_count += 1
                     continue
 
-                # Create timestamp for filename
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                # # Create timestamp for filename
+                # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
                 
-                # Save JSON locally
-                file_name = f"{subject}_{topic}_{timestamp}.json"
-                file_path = os.path.join(output_folder, file_name)
+                # # Save JSON locally
+                # file_name = f"{subject}_{topic}_{timestamp}.json"
+                # file_path = os.path.join(output_folder, file_name)
 
-                with open(file_path, "w", encoding="utf-8") as json_file:
-                    json.dump(combined_data, json_file, indent=2, ensure_ascii=False)
+                # with open(file_path, "w", encoding="utf-8") as json_file:
+                #     json.dump(combined_data, json_file, indent=2, ensure_ascii=False)
 
                 # Update status in the spreadsheet
                 sheet.update_cell(i + 2, col_index["Status"] + 1, "Successful")
-                print(f"Processed row {i + 2} and saved: {file_name}")
+                # print(f"Processed row {i + 2} and saved: {file_name}")
                 processed_count += 1
             else:
                 print(f"Failed to generate content for row {i + 2}")

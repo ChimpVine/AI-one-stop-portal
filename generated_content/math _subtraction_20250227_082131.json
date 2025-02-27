@@ -1,0 +1,158 @@
+{
+  "Subject": "math ",
+  "Grade": "2",
+  "Difficulty": "hard",
+  "Topic": "subtraction",
+  "Image": "https://site.chimpvine.com/wp-content/uploads/2024/06/quiz-thumbnail.png",
+  "questions": [
+    {
+      "Type": "radio",
+      "questionname": "What is 15 - 7?",
+      "answers": [
+        "8",
+        "9",
+        "6",
+        "7"
+      ],
+      "correct_answer": "8",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 15 and count backwards 7 numbers: <br> 15, 14, 13, 12, 11, 10, 9, 8. <br> You land on 8.<br><br> 2. Counting Up: Start from 7 and count up to 15: <br> 7, 8, 9, 10, 11, 12, 13, 14, 15. <br> You count 8 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 15 and count backwards 7 numbers: <br> 15, 14, 13, 12, 11, 10, 9, 8. <br> You land on 8.<br><br> 2. Counting Up: Start from 7 and count up to 15: <br> 7, 8, 9, 10, 11, 12, 13, 14, 15. <br> You count 8 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 20 - 13?",
+      "answers": [
+        "7",
+        "8",
+        "6",
+        "5"
+      ],
+      "correct_answer": "7",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Count backwards from 20: <br> 20, 19, 18, 17, 16, 15, 14, 13. <br> You land on 7.<br><br> 2. Counting Up: Start from 13 and count up to 20: <br> 13, 14, 15, 16, 17, 18, 19, 20. <br> You count 7 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Count backwards from 20: <br> 20, 19, 18, 17, 16, 15, 14, 13. <br> You land on 7.<br><br> 2. Counting Up: Start from 13 and count up to 20: <br> 13, 14, 15, 16, 17, 18, 19, 20. <br> You count 7 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 12 - 5?",
+      "answers": [
+        "7",
+        "6",
+        "8",
+        "9"
+      ],
+      "correct_answer": "7",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 12 and count backwards 5: <br> 12, 11, 10, 9, 8, 7. <br> You land on 7.<br><br> 2. Counting Up: Start from 5 and count up to 12: <br> 5, 6, 7, 8, 9, 10, 11, 12. <br> You count 7 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 12 and count backwards 5: <br> 12, 11, 10, 9, 8, 7. <br> You land on 7.<br><br> 2. Counting Up: Start from 5 and count up to 12: <br> 5, 6, 7, 8, 9, 10, 11, 12. <br> You count 7 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 18 - 9?",
+      "answers": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correct_answer": "9",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 18 and count backwards 9: <br> 18, 17, 16, 15, 14, 13, 12, 11, 10, 9. <br> You land on 9.<br><br> 2. Counting Up: Start from 9 and count up to 18: <br> 9, 10, 11, 12, 13, 14, 15, 16, 17, 18. <br> You count 9 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 18 and count backwards 9: <br> 18, 17, 16, 15, 14, 13, 12, 11, 10, 9. <br> You land on 9.<br><br> 2. Counting Up: Start from 9 and count up to 18: <br> 9, 10, 11, 12, 13, 14, 15, 16, 17, 18. <br> You count 9 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 14 - 6?",
+      "answers": [
+        "8",
+        "7",
+        "9",
+        "10"
+      ],
+      "correct_answer": "8",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 14 and count backwards 6: <br> 14, 13, 12, 11, 10, 9, 8. <br> You land on 8.<br><br> 2. Counting Up: Start from 6 and count up to 14: <br> 6, 7, 8, 9, 10, 11, 12, 13, 14. <br> You count 8 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 14 and count backwards 6: <br> 14, 13, 12, 11, 10, 9, 8. <br> You land on 8.<br><br> 2. Counting Up: Start from 6 and count up to 14: <br> 6, 7, 8, 9, 10, 11, 12, 13, 14. <br> You count 8 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 10 - 3?",
+      "answers": [
+        "7",
+        "6",
+        "5",
+        "4"
+      ],
+      "correct_answer": "7",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 10 and count backwards 3: <br> 10, 9, 8, 7. <br> You land on 7.<br><br> 2. Counting Up: Start from 3 and count up to 10: <br> 3, 4, 5, 6, 7, 8, 9, 10. <br> You count 7 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 10 and count backwards 3: <br> 10, 9, 8, 7. <br> You land on 7.<br><br> 2. Counting Up: Start from 3 and count up to 10: <br> 3, 4, 5, 6, 7, 8, 9, 10. <br> You count 7 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 16 - 8?",
+      "answers": [
+        "8",
+        "7",
+        "9",
+        "10"
+      ],
+      "correct_answer": "8",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 16 and count backwards 8: <br> 16, 15, 14, 13, 12, 11, 10, 9, 8. <br> You land on 8.<br><br> 2. Counting Up: Start from 8 and count up to 16: <br> 8, 9, 10, 11, 12, 13, 14, 15, 16. <br> You count 8 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 16 and count backwards 8: <br> 16, 15, 14, 13, 12, 11, 10, 9, 8. <br> You land on 8.<br><br> 2. Counting Up: Start from 8 and count up to 16: <br> 8, 9, 10, 11, 12, 13, 14, 15, 16. <br> You count 8 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 11 - 4?",
+      "answers": [
+        "7",
+        "6",
+        "5",
+        "8"
+      ],
+      "correct_answer": "7",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 11 and count backwards 4: <br> 11, 10, 9, 8, 7. <br> You land on 7.<br><br> 2. Counting Up: Start from 4 and count up to 11: <br> 4, 5, 6, 7, 8, 9, 10, 11. <br> You count 7 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 11 and count backwards 4: <br> 11, 10, 9, 8, 7. <br> You land on 7.<br><br> 2. Counting Up: Start from 4 and count up to 11: <br> 4, 5, 6, 7, 8, 9, 10, 11. <br> You count 7 steps.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is 17 - 5?",
+      "answers": [
+        "12",
+        "11",
+        "10",
+        "13"
+      ],
+      "correct_answer": "12",
+      "wrong_answer_text": "<p>😐 Incorrect! Solution Methods: <br> 1. Subtraction: Start with 17 and count backwards 5: <br> 17, 16, 15, 14, 13, 12. <br> You land on 12.<br><br> 2. Counting Up: Start from 5 and count up to 17: <br> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17. <br> You count 12 steps.</p>",
+      "right_answer_text": "<p>😀 Correct! Solution Methods: <br> 1. Subtraction: Start with 17 and count backwards 5: <br> 17, 16, 15, 14, 13, 12. <br> You land on 12.<br><br> 2. Counting Up: Start from 5 and count up to 17: <br> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17. <br> You count 12 steps.</p>"
+    }
+  ],
+  "article": {
+    "article_": "subtraction",
+    "login_article_introduction": "Welcome to the world of subtraction! Imagine you have 10 apples, and you give away 3 to your friends. How many apples do you have left? Subtraction helps us find out how many are left after taking away some from a whole. In this article, we will explore the concept of subtraction in detail, learn different methods to solve subtraction problems, and see how subtraction is used in our daily lives.",
+    "login_article_definition_and_concept": "<p>Subtraction is one of the four basic arithmetic operations. It is the process of taking one number away from another. The number you subtract from is called the <strong>minuend</strong>, and the number you subtract is called the <strong>subtrahend</strong>. The result of subtraction is called the <strong>difference</strong>.</p><p>For example: In the equation 10 - 3 = 7, 10 is the minuend, 3 is the subtrahend, and 7 is the difference.</p><p><strong>Relevance:</strong> <br/> <ul><li>Mathematics: Understanding subtraction is fundamental for all arithmetic operations.</li><li>Real-world applications: Used in budgeting, measuring distances, and calculating time.</li></ul></p>",
+    "login_article_historical_context_or_origin": "<p>The concept of subtraction has been used since ancient times, with evidence of its use found in Egyptian and Babylonian mathematics. These early civilizations created symbols and methods for subtraction, which laid the foundation for modern arithmetic.</p>",
+    "login_article_understanding_the_problem": "<p>When solving a subtraction problem, the goal is to find out how much remains after taking away a certain quantity. Let’s break this down using an example: <br> Example Problem: 15 - 7 <br> <li>Identify the minuend (15) and the subtrahend (7).</li><li>Subtract the subtrahend from the minuend to find the difference.</li></p>",
+    "login_article_methods_to_solve_the_problem": "<p><strong>Method 1: Basic Subtraction</strong> <br> <li>Write down the minuend and subtrahend vertically aligned by place value.</li> <li>Subtract starting from the rightmost digit (units) and move left.</li><br><p><strong>Example:</strong> <br>Solve 12 - 5. <li>Write it as:</li><br> 12<br>-  5<br>----<br>  7</li></p> <br><p><strong>Method 2: Using a Number Line</strong> <br> A number line can help visualize subtraction. <br> <strong>Example:</strong> <br>To solve 10 - 4, start at 10 on the number line and move 4 steps to the left. You will land on 6.</p><br><p><strong>Method 3: Counting Back</strong> <br> This method involves counting backwards from the minuend. <br> <strong>Example:</strong> <br>To solve 8 - 3, start at 8 and count back three steps: 7, 6, 5. The answer is 5.</p>",
+    "login_article_exceptions_and_special_cases": "<li><strong>Negative Results:</strong> When the subtrahend is greater than the minuend (e.g., 3 - 5), the result is negative. This means you owe someone or are in deficit.</li> <li><strong>Zero Result:</strong> If the minuend and subtrahend are equal (e.g., 7 - 7), the result is zero, indicating nothing is left.</li>",
+    "login_article_step_by_step_practice": "<p><strong>Problem 1:</strong> Solve 14 - 6.</p><p><strong>Solution:</strong> <li>Start with the minuend (14) and subtract the subtrahend (6):</li><br> 14<br>-  6<br>----<br>  8</li></p><br><p><strong>Problem 2:</strong> Solve 20 - 9.</p><p><strong>Solution:</strong> <li>Align the numbers:</li><br> 20<br>-  9<br>----<br>  11</li></p>",
+    "login_article_examples_and_variations": "<p><strong>Example 1:</strong></p><ul><li>Problem: Solve 25 - 10</li><li>Solution:</li><ul><li>Write it as:</li><li>25<br>- 10<br>----<br> 15</li></ul></li></ul><p><strong>Example 2:</strong></p><ul><li>Problem: Solve 30 - 15</li><li>Solution:</li><ul><li>Write it as:</li><li>30<br>- 15<br>----<br> 15</li></ul></li></ul>",
+    "login_article_common_mistakes_and_pitfalls": "<ul><li>Forgetting to line up numbers by place value.</li><li>Subtracting incorrectly, especially when dealing with larger numbers.</li><li>Not recognizing when a negative result occurs.</li></ul>",
+    "login_article_tips_and_tricks_for_efficiency": "<ul><li>Practice counting back on a number line to visualize subtraction.</li><li>Use manipulatives like counters or blocks to help understand taking away.</li><li>Always double-check your work by adding the difference back to the subtrahend to see if you get the minuend.</li></ul>",
+    "login_article_real_life_applications": "<ul><li>Shopping: Calculating how much money you have left after purchases.</li><li>Cooking: Determining how many ingredients you have after using some.</li><li>Time Management: Figuring out how much time is left until an event.</li></ul>",
+    "faq_quesion_1": "What do I do if I subtract and get a negative number?",
+    "faq_answer_1": "A negative number means you owe or are in deficit. It’s important to understand this concept in real-life situations.",
+    "faq_quesion_2": "Can subtraction be done with decimals?",
+    "faq_answer_2": "Yes! The same rules apply when subtracting decimals. Just align the decimal points.",
+    "faq_quesion_3": "How do I subtract larger numbers?",
+    "faq_answer_3": "You can use the same methods as smaller numbers, just be careful to line up the digits correctly.",
+    "faq_quesion_4": "What happens if I subtract a larger number from a smaller number?",
+    "faq_answer_4": "You will get a negative result, which indicates a deficit.",
+    "faq_quesion_5": "Why is subtraction important?",
+    "faq_answer_5": "Subtraction is essential for everyday calculations, budgeting, and understanding quantities in various contexts.",
+    "login_article_conclusion": "Subtraction is a fundamental skill in mathematics that we use every day. By practicing different methods and understanding how subtraction works, you’ll become more confident in solving problems and applying subtraction in real-life situations.",
+    "login_article_references_and_further_exploration": "<ul><li>Khan Academy: Interactive lessons on subtraction.</li><li>Book: Math Made Easy by Thomas A. McGowan.</li></ul>",
+    "tags": [
+      "Mathematics",
+      "Subtraction",
+      "Arithmetic"
+    ]
+  },
+  "access_type": "login"
+}

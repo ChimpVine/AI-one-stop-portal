@@ -1,0 +1,171 @@
+{
+  "Subject": "english",
+  "Grade": "2",
+  "Difficulty": "easy",
+  "Topic": "grammar",
+  "Image": "https://site.chimpvine.com/wp-content/uploads/2024/06/quiz-thumbnail.png",
+  "questions": [
+    {
+      "Type": "radio",
+      "questionname": "Which of the following is a noun?",
+      "answers": [
+        "dog",
+        "quickly",
+        "beautiful",
+        "and"
+      ],
+      "correct_answer": "dog",
+      "wrong_answer_text": "<p>😐 Incorrect! A noun is a person, place, thing, or idea. 'Dog' is a thing, while 'quickly' is an adverb, 'beautiful' is an adjective, and 'and' is a conjunction.</p>",
+      "right_answer_text": "<p>😀 Correct! A noun is a person, place, thing, or idea. 'Dog' is a thing, making it a noun.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is the past tense of 'walk'?",
+      "answers": [
+        "walked",
+        "walking",
+        "walks",
+        "walker"
+      ],
+      "correct_answer": "walked",
+      "wrong_answer_text": "<p>😐 Incorrect! The past tense of 'walk' is 'walked'. 'Walking' is the present participle, 'walks' is the present tense, and 'walker' is a noun.</p>",
+      "right_answer_text": "<p>😀 Correct! The past tense of 'walk' is 'walked'.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "Which sentence is correct?",
+      "answers": [
+        "The cat is sleeping.",
+        "The cat sleeping is.",
+        "Sleeping is the cat.",
+        "Is the cat sleeping."
+      ],
+      "correct_answer": "The cat is sleeping.",
+      "wrong_answer_text": "<p>😐 Incorrect! The correct sentence structure is 'The cat is sleeping.' The other options do not form correct sentences.</p>",
+      "right_answer_text": "<p>😀 Correct! The sentence 'The cat is sleeping.' follows the correct subject-verb structure.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "Identify the adjective in this sentence: 'The tall building is amazing.'",
+      "answers": [
+        "tall",
+        "building",
+        "is",
+        "amazing"
+      ],
+      "correct_answer": "tall",
+      "wrong_answer_text": "<p>😐 Incorrect! An adjective describes a noun. 'Tall' describes the noun 'building'. 'Amazing' is also an adjective but is not the one asked for.</p>",
+      "right_answer_text": "<p>😀 Correct! 'Tall' is the adjective that describes the noun 'building'.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "Which of the following is a verb?",
+      "answers": [
+        "run",
+        "happy",
+        "cat",
+        "quick"
+      ],
+      "correct_answer": "run",
+      "wrong_answer_text": "<p>😐 Incorrect! A verb is an action word. 'Run' is an action, while 'happy' is an adjective, 'cat' is a noun, and 'quick' is also an adjective.</p>",
+      "right_answer_text": "<p>😀 Correct! 'Run' is a verb because it describes an action.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is the plural of 'child'?",
+      "answers": [
+        "children",
+        "childs",
+        "childes",
+        "childrens"
+      ],
+      "correct_answer": "children",
+      "wrong_answer_text": "<p>😐 Incorrect! The correct plural form of 'child' is 'children'. The other options are not correct plural forms.</p>",
+      "right_answer_text": "<p>😀 Correct! The plural of 'child' is 'children'.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "Which word is an adverb?",
+      "answers": [
+        "quickly",
+        "quick",
+        "quicker",
+        "quickest"
+      ],
+      "correct_answer": "quickly",
+      "wrong_answer_text": "<p>😐 Incorrect! An adverb modifies a verb, adjective, or another adverb. 'Quickly' modifies actions, while 'quick', 'quicker', and 'quickest' are adjectives.</p>",
+      "right_answer_text": "<p>😀 Correct! 'Quickly' is an adverb that describes how an action is performed.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "Which of the following is a conjunction?",
+      "answers": [
+        "and",
+        "happy",
+        "run",
+        "blue"
+      ],
+      "correct_answer": "and",
+      "wrong_answer_text": "<p>😐 Incorrect! A conjunction connects words or groups of words. 'And' is a conjunction, while 'happy' is an adjective, 'run' is a verb, and 'blue' is a color.</p>",
+      "right_answer_text": "<p>😀 Correct! 'And' is a conjunction that connects words or phrases.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "What is the main purpose of a period?",
+      "answers": [
+        "to end a sentence",
+        "to ask a question",
+        "to show excitement",
+        "to connect ideas"
+      ],
+      "correct_answer": "to end a sentence",
+      "wrong_answer_text": "<p>😐 Incorrect! A period is used to end a declarative sentence. The other options describe different punctuation marks.</p>",
+      "right_answer_text": "<p>😀 Correct! A period is used to end a sentence.</p>"
+    },
+    {
+      "Type": "radio",
+      "questionname": "Which of the following is a synonym for 'happy'?",
+      "answers": [
+        "joyful",
+        "sad",
+        "angry",
+        "bored"
+      ],
+      "correct_answer": "joyful",
+      "wrong_answer_text": "<p>😐 Incorrect! A synonym is a word that has the same or similar meaning. 'Joyful' means the same as 'happy', while 'sad', 'angry', and 'bored' are antonyms.</p>",
+      "right_answer_text": "<p>😀 Correct! 'Joyful' is a synonym for 'happy'.</p>"
+    }
+  ],
+  "article": {
+    "article_": "grammar",
+    "login_article_introduction": "Welcome to the world of grammar! Grammar is like the rules of a game that help us play with words. It's what makes our sentences clear and helps us communicate effectively. In this article, we will explore the basics of grammar, understand its importance, and learn how to use it correctly in our writing.",
+    "login_article_definition_and_concept": "<p>Grammar is the system of rules that governs how words are used in a language. It includes the structure of sentences, the use of punctuation, and the correct forms of words. Understanding grammar helps us express our thoughts clearly and correctly.</p><p><strong>Key Components:</strong> <br/> <ul><li><strong>Nouns:</strong> Words that name people, places, things, or ideas (e.g., cat, city, happiness).</li><li><strong>Verbs:</strong> Action words that describe what someone or something does (e.g., run, jump, think).</li><li><strong>Adjectives:</strong> Words that describe nouns (e.g., blue, happy, tall).</li><li><strong>Adverbs:</strong> Words that describe verbs, adjectives, or other adverbs (e.g., quickly, very, well).</li></ul></p>",
+    "login_article_historical_context_or_origin": "<p>The study of grammar dates back to ancient civilizations. The Greeks and Romans were among the first to analyze language systematically. In the Middle Ages, grammar was a key subject in education, helping people learn to read and write correctly. Over time, different languages developed their own grammatical rules.</p>",
+    "login_article_understanding_the_problem": "<p>Understanding grammar is essential for effective communication. Let’s explore some basic rules:</p><ul><li><strong>Subject-Verb Agreement:</strong> The subject and verb in a sentence must agree in number (singular or plural). For example, \"The dog barks\" (singular) vs. \"The dogs bark\" (plural).</li><li><strong>Proper Punctuation:</strong> Using punctuation marks correctly helps clarify the meaning of sentences. For example, \"Let’s eat, Grandma!\" vs. \"Let’s eat Grandma!\"</li></ul>",
+    "login_article_methods_to_solve_the_problem": "<p><strong>Method 1: Identifying Parts of Speech</strong> <br> <li>Read the sentence carefully.</li> <li>Look for nouns, verbs, adjectives, and adverbs.</li> <li>Identify the subject and predicate.</li></p><p><strong>Example:</strong> <br>In the sentence \"The quick brown fox jumps over the lazy dog,\" identify:</li><ul><li>Nouns: fox, dog</li><li>Verbs: jumps</li><li>Adjectives: quick, brown, lazy</li></ul></p><p><strong>Method 2: Sentence Structure</strong> <br> <li>Understand the basic structure of a sentence: Subject + Verb + Object.</li> <li>Practice rearranging sentences to see how word order affects meaning.</li></p><p><strong>Example:</strong> <br>\"The cat chased the mouse.\" can become \"The mouse was chased by the cat.\"</p>",
+    "login_article_exceptions_and_special_cases": "<li><strong>Irregular Verbs:</strong> Some verbs do not follow the regular pattern of conjugation (e.g., go/went, be/was).</li><li><strong>Collective Nouns:</strong> Words like \"team\" or \"group\" can be singular or plural depending on context (e.g., \"The team is winning\" vs. \"The team are celebrating together\").</li>",
+    "login_article_step_by_step_practice": "<p><strong>Practice Exercise 1:</strong> Identify the parts of speech in the sentence: \"The happy dog runs quickly.\" <br><strong>Solution:</strong> <li>Noun: dog</li><li>Verb: runs</li><li>Adjective: happy</li><li>Adverb: quickly</li></p><p><strong>Practice Exercise 2:</strong> Correct the sentence: \"She go to the store.\" <br><strong>Solution:</strong> \"She goes to the store.\"</p>",
+    "login_article_examples_and_variations": "<p><strong>Example 1:</strong> <br>Correct the sentence: \"Him go to school every day.\" <br><strong>Solution:</strong> \"He goes to school every day.\" <br><strong>Example 2:</strong> <br>Identify the subject and verb: \"The birds are singing in the trees.\" <br><strong>Solution:</strong> Subject: The birds; Verb: are singing.</p>",
+    "login_article_common_mistakes_and_pitfalls": "<ul><li>Confusing similar-sounding words (e.g., their/there/they're).</li><li>Using incorrect verb forms (e.g., \"I seen it\" instead of \"I saw it\").</li><li>Forgetting to use punctuation marks at the end of sentences.</li></ul>",
+    "login_article_tips_and_tricks_for_efficiency": "<ul><li>Read your sentences out loud to check for clarity.</li><li>Use grammar checking tools to help catch mistakes.</li><li>Practice writing regularly to improve your skills.</li></ul>",
+    "login_article_real_life_applications": "<ul><li>Writing essays or reports for school.</li><li>Communicating clearly in emails or messages.</li><li>Understanding instructions in books or online resources.</li></ul>",
+    "faq_quesion_1": "What is a noun?",
+    "faq_answer_1": "A noun is a word that names a person, place, thing, or idea, like 'dog', 'city', or 'happiness'.",
+    "faq_quesion_2": "What is a verb?",
+    "faq_answer_2": "A verb is an action word that describes what someone or something does, like 'run', 'jump', or 'think'.",
+    "faq_quesion_3": "Why is punctuation important?",
+    "faq_answer_3": "Punctuation helps clarify the meaning of sentences and makes writing easier to read.",
+    "faq_quesion_4": "What are adjectives?",
+    "faq_answer_4": "Adjectives are words that describe nouns, giving more detail, like 'blue', 'happy', or 'tall'.",
+    "faq_quesion_5": "How can I improve my grammar?",
+    "faq_answer_5": "Practice writing, read more books, and use grammar checking tools to help you learn.",
+    "login_article_conclusion": "Mastering grammar is essential for effective communication. By understanding the rules and practicing regularly, you can improve your writing and speaking skills. Remember, grammar helps us share our thoughts clearly and accurately!",
+    "login_article_references_and_further_exploration": "<ul><li>Grammarly: Online grammar checking tool.</li><li>Book: 'Grammar for Kids' by Mary Jane Sterling.</li></ul>",
+    "tags": [
+      "English",
+      "Grammar",
+      "Language Skills"
+    ]
+  },
+  "access_type": "login"
+}

@@ -51,7 +51,7 @@ mathtricksjr_username = os.getenv('WP_USERNAME_MATHTRICKSJr')
 mathtricksjr_password = os.getenv('WP_PASSWORD_MATHTRICKSJr')
 
 
-
+print("hello")
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 CREDENTIALS_FILE = "credentials.json"

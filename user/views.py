@@ -56,7 +56,7 @@ def login_view(request):
         if 'role' in request.GET and request.GET['role'] == 'admin':
             return render(request, 'admin_login.html')
 
-        return render(request, 'login.hviews.login_viewtml')
+        return render(request, 'login.html')
 
     # ✅ Handle unsupported HTTP methods explicitly
     return JsonResponse({"error": "Method not allowed"}, status=405)

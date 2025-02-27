@@ -12,7 +12,7 @@ OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 if not OPENAI_API_KEY:
     raise ValueError("OPENAI_API_KEY not found in environment variables.")
 
-def article_mathfun(subject, grade, difficulty, topic):
+def generate_article(subject, grade, difficulty, topic, language):
     """Generates a structured math article using OpenAI API."""
     
     # Initialize the LLM
@@ -23,7 +23,7 @@ def article_mathfun(subject, grade, difficulty, topic):
         max_tokens=8000
     )
 
-    prompt_file_path = os.path.join('Prompt-templates', 'new', 'new.txt')
+    prompt_file_path = os.path.join('Prompt-templates','Combined', 'article.txt')
 
     def load_prompt_template(file_path):
         """Loads the prompt template from a file with encoding handling."""
@@ -60,6 +60,8 @@ def article_mathfun(subject, grade, difficulty, topic):
             "{difficulty}", difficulty
         ).replace(
             "{topic}", topic
+        ).replace(
+            "{language}", language
         )
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -93,11 +95,11 @@ def article_mathfun(subject, grade, difficulty, topic):
         return None
 
 # Test the function with sample inputs
-if __name__ == "__main__":
-    subject = "Mathematics"
-    grade = "8"
-    difficulty = "Medium"
-    topic = "data analysis"
+# if __name__ == "__main__":
+#     subject = "Mathematics"
+#     grade = "8"
+#     difficulty = "Medium"
+#     topic = "data analysis"
 
-    article = article_mathfun(subject, grade, difficulty, topic)
-    print(json.dumps(article, indent=4) if article else "Failed to generate article.")
+#     article = article_mathfun(subject, grade, difficulty, topic)
+#     print(json.dumps(article, indent=4) if article else "Failed to generate article.")

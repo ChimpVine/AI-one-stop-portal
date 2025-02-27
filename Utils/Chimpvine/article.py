@@ -6,7 +6,7 @@ import json
 load_dotenv()
 
 # Get the OpenAI API key from environment variables
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY12')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 def article_chimpvine(article_title, seo_keywords, language):
     llm = ChatOpenAI(
         model="gpt-4o-mini",

@@ -59,7 +59,7 @@ def add_user_view(request):
             new_user.set_password(password)
             new_user.save()
             messages.success(request, 'User added successfully!')
-            return redirect('dashboard')
+            # return redirect('dashboard')
         except Role.DoesNotExist:
             messages.error(request, 'Invalid role specified.')
         except Exception as e:

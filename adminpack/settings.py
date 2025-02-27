@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'article',
     'H5P',
     'quiz',
-    'rest_framework',
+    'articlequiz',
 
 ]
 AUTH_USER_MODEL = 'user.CustomUser'

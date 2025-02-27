@@ -1,23 +1,20 @@
-import os
-from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv
+import os
 import json
+
 # Load environment variables from .env file
 load_dotenv()
 
 # Get the OpenAI API key from environment variables
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY12')
-def quiz_json(topic, subject, number, difficulty, grade, description, image_url):
-    llm = ChatOpenAI(
-        model="gpt-4o-mini",
-        openai_api_key=OPENAI_API_KEY,
-        temperature=0.5,
-        max_tokens=8000
-    )
-    # Debugging: check current directory
-    print("Current working directory:", os.getcwd())
-    
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+
+def generate_quiz(subject, grade, difficulty, topic, description, number,image_url=None):
+    """Generate quiz based on input parameters."""
+        
     def load_prompt_template(file_path):
+        """Load the prompt template from a file, with error handling."""
         try:
             with open(file_path, 'r', encoding='utf-8') as file:
                 return file.read()
@@ -35,40 +32,45 @@ def quiz_json(topic, subject, number, difficulty, grade, description, image_url)
         except Exception as e:
             print(f"Unexpected error: {e}")
             return None
+    # Initialize the LLM
+    llm = ChatOpenAI(
+        model="gpt-4o-mini",
+        openai_api_key=OPENAI_API_KEY,
+        temperature=0.5,
+        max_tokens=4095
+    )
 
-    # Adjust the relative path to point directly to the file from the current directory
-    prompt_file_path = os.path.join('Prompt-templates','Quiz', 'quiz.txt')
+    # Debugging: check current directory
+    print("Current working directory:", os.getcwd())
+    
+    # Load the prompt template
+    prompt_file_path = os.path.join('Prompt-templates', 'Quiz', 'quiz.txt')
+    print(f"Loading prompt template from: {prompt_file_path}")
     prompt_template = load_prompt_template(prompt_file_path)
-
+    
     if prompt_template is None:
-        return None  # Handle the error as needed
+        return "Error: Unable to load prompt template."
 
-    command = f"Generate quiz on topic {topic} for subject {subject}. Generate {number} number of questions in {difficulty} mode. This quiz is made for grade {grade} students. The topic description is {description}. The image url is {image_url} "
+    # Replace placeholders in the template
+    prompt = prompt_template.replace("{subject}", str(subject))\
+                            .replace("{grade}", str(grade))\
+                            .replace("{difficulty}", str(difficulty))\
+                            .replace("{topic}", str(topic))\
+                            .replace("{description}", str(description))\
+                            .replace("{number}", str(number))
 
-    def generate_lesson_plan(command):
-        prompt = prompt_template.replace("{context}", command)
-        try:
-            response = llm.invoke(prompt)
-            return response
-        except Exception as e:
-            print(f"Error generating lesson plan: {e}")
-            return None
+    # Generate the quiz from the prompt
+    response = llm.predict(prompt)
+    print(f"Raw response: {response}")  # Debugging: check the raw response
 
-    # Logic for MCQs with a single correct answer
-    output = generate_lesson_plan(command)
-    if output is None:
-        return None  # Handle the error as needed
-    output_content = output.content if hasattr(output, 'content') else str(output)
-    # Clean up the lesson plan output
-    output_content = output_content.replace("content='", "").replace("json", "").replace('\n', '')
+    # Clean the response if needed
+    output = response.replace("```json", "").replace("```", "").strip()
+    print(f"Cleaned output: {output}")  # Check if the cleaning worked
 
-    print("This is the clear", output_content)
-    
-     # Try to decode JSON
     try:
-        article = json.loads(output_content)
+        output_json = json.loads(output)  # Try to parse the cleaned response into JSON
+        print(f"Generated quiz JSON: {json.dumps(output_json, indent=4)}")  # Pretty print the JSON
+        return output_json  # Return the JSON to the caller
     except json.JSONDecodeError as e:
-        print("Error decoding JSON:", e)
-        return None
-    
-    return article
+        print(f"JSON decoding error: {e}")
+        return "Error: Unable to generate quiz."

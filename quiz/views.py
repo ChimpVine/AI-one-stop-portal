@@ -2,16 +2,15 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from google.oauth2.service_account import Credentials
-from django.shortcuts import render  # Add this import
+from django.shortcuts import render
 from gspread.exceptions import SpreadsheetNotFound
-
 import gspread
 import json
 import http.client
 from datetime import datetime
 import base64
 import os
-from Utils.Quiz.quiz import quiz_json
+from Utils.Quiz.quiz import generate_quiz
 
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -103,12 +102,17 @@ def process_sheet(sheet, generate_content_fn, email):
             if status_code in [200, 201]:
                 update_sheet(sheet, row_number, "Drafted successfully!", date, time, email)
                 created_contents.append(row_data.get("topic", ""))
+                print("Quiz posted successfully!")
+
             else:
                 update_sheet(sheet, row_number, "Post Failed!", date, time, email)
                 failed_contents.append(row_data.get("topic", ""))
+                print("Failed to post the quiz.")
+
         else:
             update_sheet(sheet, row_number, "Content Generation Failed!", date, time, email)
             failed_contents.append(row_data.get("topic", ""))
+            print("Content generation failed.")
 
     return f"Created: {len(created_contents)}, Failed: {len(failed_contents)}"
 
@@ -118,17 +122,22 @@ def process_sheet(sheet, generate_content_fn, email):
 def submit_quiz(request):
     if request.method == 'POST':
         try:
+            print("Processing request...")
             data = json.loads(request.body)
+            print(f"Request Data: {data}")
+            
             google_sheet_id = data.get('google_sheet_id')
             email = data.get('email', request.user.email)  # Get the email from request or fallback to user email
 
             if not google_sheet_id:
                 return JsonResponse({'error': 'Google Sheet ID is required.'}, status=400)
 
+            print(f"Opening Google Sheet with ID: {google_sheet_id}")
             workbook = client.open_by_key(google_sheet_id)
             sheet = workbook.sheet1
+            print("Google Sheet opened successfully")
 
-            result = process_sheet(sheet, lambda row: quiz_json(
+            result = process_sheet(sheet, lambda row: generate_quiz(
                 row.get("topic", ""),
                 row.get("subject", ""),
                 row.get("number", ""),
@@ -137,10 +146,16 @@ def submit_quiz(request):
                 row.get("description", ""),
                 row.get("image_url", "")
             ), email)  # Pass email to the process_sheet function
+              # Print the generated quiz result for debugging
+            print(f"Generated Quiz:",result)
+            
 
             return JsonResponse({'result': result}, status=200)
 
         except SpreadsheetNotFound:
             return JsonResponse({'error': 'Google Sheet not found.'}, status=404)
+        except json.JSONDecodeError:
+            return JsonResponse({'error': 'Invalid JSON format.'}, status=400)
         except Exception as e:
+            print(f"Error in submit_quiz: {str(e)}")
             return JsonResponse({'error': str(e)}, status=500)

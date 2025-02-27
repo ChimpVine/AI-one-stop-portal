@@ -76,6 +76,12 @@
                                 <i class="fa-solid fa-file fs-5 mb-3 me-2"></i> H5P
                             </a>
                         </li>
+                        <li>
+                            <a href="{% url 'articlequiz' %}" class="nav-link py-3 px-2 link-light" title="A&Q">
+                                <i class="fa-solid fa-book fs-5 mb-3 me-2"></i>A&Q
+
+                            </a>
+                        </li>
                     
                     </ul>
                 </div>
@@ -116,6 +122,16 @@
                                         <button type="reset" class="btn btn-outline-danger mt-2">Clear</button>
                                    </div>
                                 </form>
+                            </div>
+                            <div class="container mt-3">
+                                {% if messages %}
+                                    <div class="alert alert-dismissible fade show" role="alert">
+                                        {% for message in messages %}
+                                            <i class="fa-solid fa-check-circle"></i> {{ message }}
+                                        {% endfor %}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

@@ -23,6 +23,7 @@
 </head>
 
 <body>
+    
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
             <img class="mb-2" src="{% static 'img/artificial-intelligence.gif' %}" alt="logo" width="50" height="50">
@@ -34,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <span class="text-muted">Hello, {{ request.user.username }}</span>
+                        <span class="text-muted">Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}</span>
                     </li>
                     <li class="text-danger ms-4">
                         <a href="{% url 'logout' %}" class="text-danger text-decoration-none">
@@ -49,18 +50,40 @@
         <div class="row">
             <div class="col-sm-auto bg-dark sticky-top">
                 <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top">
-                    <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
-                        <li><a href="{% url 'dashboard' %}" class="nav-link py-3 px-2 mt-2 link-light"><i class="fa-solid fa-house fs-5 mb-3 me-2"></i> Dashboard</a></li>
-                        <li><a href="{% url 'add_user' %}" class="nav-link py-3 px-2 mt-2 link-light"><i class="fa-solid fa-users fs-5 mb-3 me-2"></i> Add User</a></li>
-                        <li><a href="{% url 'article' %}" class="nav-link py-3 px-2 mt-2 link-light"><i class="fa-solid fa-newspaper fs-5 mb-3 me-2"></i> Articles</a></li>
-                        <li><a href="{% url 'quiz' %}" class="nav-link py-3 hover px-2 link-light"><i class="fa-solid fa-circle-question fs-5 mb-3 me-2"></i> Quiz</a></li>
-                        <li><a href="#" class="nav-link py-3 px-2 link-light"><i class="fa-solid fa-file fs-5 mb-3 me-2"></i> H5P</a></li>
+                    <ul
+                        class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
                         <li>
-                            <a href="{% url 'articlequiz' %}" class="nav-link py-3 px-2 link-light" title="A&Q">
+                            <a href="{% url 'dashboard' %}" class="nav-link py-3 px-2 mt-2 link-light" title="Dashboard">
+                                <i class="fa-solid fa-house fs-5 mb-3 me-2"></i> Dashboard
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'add_user' %}" class="nav-link py-3 px-2 mt-2 link-light" title="Add User">
+                                <i class="fa-solid fa-users fs-5 mb-3 me-2"></i> Add User
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'article' %}" class="nav-link py-3  px-2 mt-2 link-light" title="Articles">
+                                <i class="fa-solid fa-newspaper fs-5 mb-3 me-2"></i> Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'quiz' %}" class="nav-link py-3 px-2 link-light" title="Quiz">
+                                <i class="fa-solid fa-circle-question fs-5 mb-3 me-2"></i> Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link py-3 px-2 link-light" title="H5P">
+                                <i class="fa-solid fa-file fs-5 mb-3 me-2"></i> H5P
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'articlequiz' %}" class="nav-link py-3 px-2 hover link-light" title="A&Q">
                                 <i class="fa-solid fa-book fs-5 mb-3 me-2"></i>A&Q
 
                             </a>
                         </li>
+                
                     </ul>
                 </div>
             </div>
@@ -69,12 +92,21 @@
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <div class="card p-4 shadow-lg">
-                                <h2 class="text-center mb-4">Add Quizzes</h2>
-                                <form id="quizForm" method="POST">
+                                <h2 class="text-center mb-4">Add Articles and Quiz</h2>
+                                <form id="articlequizForm" method="post">
                                     {% csrf_token %}
                                     <div class="mb-3">
-                                        <label for="google_sheet_id" class="form-label">Google Sheet ID</label>
-                                        <input type="text" class="form-control form-control-sm" id="google_sheet_id" name="google_sheet_id" placeholder="Enter Google Sheet ID" required>
+                                        <label for="text" class="form-label">Google Sheet Id</label>
+                                        <input type="text" class="form-control form-control-sm" name="google_sheet_id" id="number"
+                                            placeholder="Enter Google Sheet Id" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="website" class="form-label">Website</label>
+                                        <select class="form-select form-select-sm" name="website" id="website" required>
+                                                      <option value="Chimpvine.com">Chimpvine.com</option>
+                                                      <option value="site.chimpvine.com/dev314159">Dev-Chimpvine.com</option>
+
+                                        </select>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <button type="submit" class="btn btn-outline-primary mt-2">Generate</button>
@@ -89,33 +121,40 @@
         </div>
     </div>
 </body>
+  
 <script>
-document.getElementById('quizForm').addEventListener('submit', async function (e) {
+document.getElementById('articlequizForm').addEventListener('submit', async function (e) {
     e.preventDefault();
 
-    const googleSheetId = document.getElementById('google_sheet_id').value;
+    // Get values from the form
+    const googleSheetId = document.getElementById('number').value;  // Match the form input ID
+    const website = document.getElementById('website').value;  // Match the form select ID
     const userEmail = "{{ request.user.email }}";  // Get the logged-in user's email
+    const userName = "{{ request.user.username }}";  // Get the logged-in user's username
 
-    const response = await fetch('/quiz/submit_quiz/', {
+    // Sending the data to the backend
+    const response = await fetch('/articlequiz/process_quiz_article/', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            google_sheet_id: googleSheetId,
-            email: userEmail
-
-        })
+            google_sheet_id: googleSheetId,  // Correct the key name
+            website: website,
+            email: userEmail,
+            username: userName,
+        }),
     });
 
     const result = await response.json();
+
+    // Display the result (success or error message)
     document.getElementById('response').textContent = response.ok ? result.result : result.error;
 });
 
 
+
+
 </script>
 
-
-
 </html>
-

@@ -254,5 +254,4 @@ def generate_and_post_article(request):
     return JsonResponse({'error': 'Invalid request method.'}, status=405)
 
 
-    return JsonResponse({'error': 'Invalid request method.'}, status=405)
 

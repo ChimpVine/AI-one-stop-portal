@@ -1,9 +1,7 @@
 from django.urls import path
-from . import views
+from .views import article, generate_and_post_article
 
 urlpatterns = [
-    
-    path('', views.article, name='article'),
-    path('generate_and_post_article/', views.generate_and_post_article, name='generate_and_post_article'),
-
+    path("", article, name="article"),
+    path("generate-and-post-article/", generate_and_post_article, name="generate_and_post_article"),
 ]

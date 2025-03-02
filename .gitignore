@@ -1,5 +1,6 @@
 .env
 venv/
 credentials.json
-
+.DS_Store
 __pycache__/
+

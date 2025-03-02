@@ -1,29 +1,141 @@
-{% load static%}
-{% blockcontent%}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+/* General nav-link styling */
+.nav-link {
+    transition: color 0.3s ease, transform 0.3s ease;
+    background-color: transparent !important; /* Remove background on default state */
+}
+
+/* Hover effect: subtle color change and scale effect */
+.nav-link:hover {
+    color: #668ac2 !important;
+    background-color: transparent !important; /* Ensure no background color on hover */
+}
+
+/* Hover effect on icon */
+.nav-link i {
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover i {
+    color: #86b7fe !important;
+}
+
+/* When the link is active, change text color and remove background color */
+.nav-link.active {
+    color: #86b7fe !important;
+    background-color: transparent !important;  /* Ensure no background color on active */
+}
+
+/* Optional: Make sure the navbar background is the desired color */
+.navbar {
+    background-color: #f8f9fa !important;  /* Adjust to desired color */
+}
+
+/* Optional: Adjust background of .nav-pills */
+.nav-pills .nav-link {
+    background-color: transparent !important; /* Remove background on default state */
+}
+
+/* Optional: Modify active state of the nav-pills */
+.nav-pills .nav-link.active {
+    background-color: transparent !important; /* Ensure no background color on active */
+    color: #86b7fe !important;  /* Optional color for active state */
+}
+</style>
+
+
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <img class="mb-2" src="{% static 'img/artificial-intelligence.gif' %}" alt="logo" width="50" height="50">
+            <span class="h4">AI Automation</span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <span class="text-muted">Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}</span>
+                    </li>
+                    <li class="text-danger ms-4">
+                        <a href="{% url 'logout' %}" class="text-danger text-decoration-none">
+                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Dashboard</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
-                </li>
-                <!-- Show "Add User" link only if the user is an admin -->
-                {% if user.role.name == "admin" %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add_user' %}">Add User</a>
-                </li>
-            {% endif %}
-            
-            </ul>
+        <div class="row">
+            <div class="col-sm-auto bg-dark sticky-top">
+                <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top">
+                    <ul class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
+                        <li>
+                            <a href="{% url 'dashboard' %}" class="nav-link py-3 px-2 mt-2 link-light {% if request.path == '/dashboard/' %}active{% endif %}" title="Dashboard">
+                                <i class="fa-solid fa-house fs-5 mb-3 me-2"></i> Dashboard
+                            </a>
+                        </li>
+
+                        {% if user.is_authenticated and user.role.name == 'admin' %}
+                        <li>
+                            <a href="{% url 'add_user' %}" class="nav-link py-3 px-2 mt-2 link-light {% if request.path == '/add_user/' %}active{% endif %}" title="Add User">
+                                <i class="fa-solid fa-users fs-5 mb-3 me-2"></i> Add User
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        <li>
+                            <a href="{% url 'article' %}" class="nav-link py-3 px-2 mt-2 link-light {% if request.path == '/article/' %}active{% endif %}" title="Articles">
+                                <i class="fa-solid fa-newspaper fs-5 mb-3 me-2"></i> Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'quiz' %}" class="nav-link py-3 px-2 link-light {% if request.path == '/quiz/' %}active{% endif %}" title="Quiz">
+                                <i class="fa-solid fa-circle-question fs-5 mb-3 me-2"></i> Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link py-3 px-2 link-light {% if request.path == '/h5p/' %}active{% endif %}" title="H5P">
+                                <i class="fa-solid fa-file fs-5 mb-3 me-2"></i> H5P
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'articlequiz' %}" class="nav-link py-3 px-2 link-light {% if request.path == '/articlequiz/' %}active{% endif %}" title="A&Q">
+                                <i class="fa-solid fa-book fs-5 mb-3 me-2"></i> A&Q
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-sm p-3 min-vh-100">
+                {% block content %}
+                {% endblock %}
+            </div>
         </div>
     </div>
-</nav>
 
-{% endblock%}
+</body>
+</html>

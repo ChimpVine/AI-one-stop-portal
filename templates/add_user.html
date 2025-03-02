@@ -1,91 +1,9 @@
+{% extends 'nav.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .hover {
-            color: #86b7fe !important;
-            background-color: none !important;
-        }
-    </style>
-</head>
+{% block title %} Add User {% endblock %}
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <img class="mb-2" src="{% static 'img/artificial-intelligence.gif' %}" alt="logo" width="50" height="50">
-            <span class="h4">AI Automation</span>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <span class="text-muted">Hello, {% if user.is_authenticated %}{{ user.username }}{% else %}Guest{% endif %}</span>
-                    </li>
-                    <li class="text-danger ms-4">
-                        <a href="{% url 'logout' %}" class="text-danger text-decoration-none">
-                            <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-auto bg-dark sticky-top">
-                <div class="d-flex flex-sm-column flex-row flex-nowrap bg-dark align-items-center sticky-top">
-                    <ul
-                        class="nav nav-pills nav-flush flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center justify-content-between w-100 px-3 align-items-center">
-                        <li>
-                            <a href="{% url 'dashboard' %}" class="nav-link py-3 px-2 mt-2 link-light" title="Dashboard">
-                                <i class="fa-solid fa-house fs-5 mb-3 me-2"></i> Dashboard
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_user' %}" class="nav-link hover py-3 px-2 mt-2 link-light" title="Add User">
-                                <i class="fa-solid fa-users fs-5 mb-3 me-2"></i> Add User
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'article' %}" class="nav-link py-3 px-2 mt-2 link-light" title="Articles">
-                                <i class="fa-solid fa-newspaper fs-5 mb-3 me-2"></i> Articles
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'quiz' %}" class="nav-link py-3 px-2 link-light" title="Quiz">
-                                <i class="fa-solid fa-circle-question fs-5 mb-3 me-2"></i> Quiz
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="nav-link py-3 px-2 link-light" title="H5P">
-                                <i class="fa-solid fa-file fs-5 mb-3 me-2"></i> H5P
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'articlequiz' %}" class="nav-link py-3 px-2 link-light" title="A&Q">
-                                <i class="fa-solid fa-book fs-5 mb-3 me-2"></i>A&Q
-
-                            </a>
-                        </li>
-                    
-                    </ul>
-                </div>
-            </div>
+{% block content %}
             <div class="col-sm p-3 min-vh-100">
                 <div class="container mt-5">
                     <div class="row justify-content-center">
@@ -98,11 +16,15 @@
                                         <label for="username" class="form-label">Username</label>
                                         <input type="text" class="form-control form-control-sm" name="username" id="username"
                                             placeholder="Enter username" required>
+                                        <small id="username-error" class="text-danger"></small>
+
                                     </div>
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="Enter email"
                                             required>
+                                        <small id="email-error" class="text-danger"></small>
+
                                     </div>
                                     <div class="mb-3">
                                         <label for="password" class="form-label">Password</label>
@@ -124,14 +46,16 @@
                                 </form>
                             </div>
                             <div class="container mt-3">
-                                {% if messages %}
-                                    <div class="alert alert-dismissible fade show" role="alert">
-                                        {% for message in messages %}
-                                            <i class="fa-solid fa-check-circle"></i> {{ message }}
-                                        {% endfor %}
-                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                    </div>
-                                {% endif %}
+        <!-- Display Messages -->
+        <div>
+            {% if messages %}
+                <div class="alert alert-info">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
                             </div>
                         </div>
                     </div>
@@ -140,5 +64,37 @@
         </div>
     </div>
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const usernameInput = document.getElementById("username");
+        const emailInput = document.getElementById("email");
 
-</html>
+        function validateField(field, value) {
+            fetch("{% url 'validate_user' %}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": "{{ csrf_token }}"
+                },
+                body: JSON.stringify({ field: field, value: value })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const errorMsg = document.getElementById(`${field}-error`);
+                if (data.exists) {
+                    errorMsg.textContent = `${field.charAt(0).toUpperCase() + field.slice(1)} already exists!`;
+                    errorMsg.style.color = "red";
+                } else {
+                    errorMsg.textContent = "";
+                }
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        usernameInput.addEventListener("input", () => validateField("username", usernameInput.value));
+        emailInput.addEventListener("input", () => validateField("email", emailInput.value));
+    });
+</script>
+
+
+{% endblock %}

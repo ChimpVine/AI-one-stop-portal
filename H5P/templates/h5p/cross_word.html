@@ -1,0 +1,101 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block title %} Cross Word {% endblock %}
+
+{% block content %}
+<div class="col-sm p-3 min-vh-100">
+    <a href="{% url 'h5p' %}" class="btn btn-outline-dark mb-3">
+        <i class="fa fa-arrow-left"></i> Back to H5P Dashboard
+    </a>
+
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card p-4 shadow-lg">
+                        <h2 class="text-center mb-4">Create Cross Word Puzzle</h2>
+                        <form id="crosswordForm" method="POST">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="google_sheet_id" class="form-label">Google Sheet ID</label>
+                                <i class="fa fa-info-circle ms-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Remember to share the Google Sheet credentials email pytho-api@finalarticle.iam.gserviceaccount.com for access!" style="cursor: pointer;"></i>
+                                <input type="text" class="form-control form-control-sm" id="google_sheet_id" name="google_sheet_id" placeholder="Enter Google Sheet ID" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="sheet_name" class="form-label">Sheet Name</label>
+                                <input type="text" class="form-control form-control-sm" id="sheet_name" name="sheet_name" placeholder="Enter Google Sheet Name" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="drive_folder_id" class="form-label">Drive Folder Id</label>
+                                <input type="text" class="form-control form-control-sm" id="drive_folder_id" name="drive_folder_id" placeholder="Enter Drive Folder Id" required>
+                            </div>
+                            
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-outline-primary mt-2">Generate</button>
+                                <button type="reset" class="btn btn-outline-danger mt-2">Clear</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="response" class="mt-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    document.getElementById('crosswordForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        console.log("Form submitted");  // Debugging
+
+        const googleSheetId = document.getElementById('google_sheet_id').value;
+        const sheetName = document.getElementById('sheet_name').value;
+        const driveFolderId = document.getElementById('drive_folder_id').value;
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        console.log("Google Sheet ID:", googleSheetId);
+        console.log("Sheet Name:", sheetName);
+        console.log("Drive Folder ID:", driveFolderId);
+
+        try {
+            const response = await fetch('/h5p/process_crossword_h5p/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken
+                },
+                body: JSON.stringify({
+                    google_sheet_id: googleSheetId,
+                    sheet_name: sheetName,
+                    drive_folder_id: driveFolderId
+                })
+            });
+
+            const result = await response.json();
+            console.log("Response:", result);
+
+            // Set message and styling based on response status
+            const responseDiv = document.getElementById('response');
+            responseDiv.textContent = response.ok ? result.message : result.error;
+            responseDiv.className = response.ok ? 'alert alert-success' : 'alert alert-danger';
+
+        } catch (error) {
+            console.error("Fetch error:", error);
+
+            // Display fetch error in UI
+            const responseDiv = document.getElementById('response');
+            responseDiv.textContent = "An error occurred. Please try again.";
+            responseDiv.className = 'alert alert-danger';
+        }
+    });
+
+    // Enable Bootstrap Tooltip functionality
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
+{% endblock %}

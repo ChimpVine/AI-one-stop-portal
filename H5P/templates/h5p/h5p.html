@@ -1,0 +1,43 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block title %} H5P {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card text-center border border-primary p-3 mb-3">
+                <div class="card-body">
+                    <i class="bi bi-grid-3x3-gap-fill display-4 text-primary"></i>
+                    <h4 class="mt-3">Crossword Puzzle</h4>
+                    <p class="text-muted">Generate Crossword Puzzle here.</p>
+                    <a href="{% url 'cross_word' %}" class="btn btn-primary">Generate Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card text-center border border-success p-3 mb-3">
+                <div class="card-body">
+                    <i class="bi bi-question-circle-fill display-4 text-success"></i>
+                    <h4 class="mt-3">Make the Word</h4>
+                    <p class="text-muted">Generate Make the Word here.</p>
+                    <a href="{% url 'find_the_word' %}" class="btn btn-success">Generate Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-6 col-md-4">
+            <div class="card text-center border border-danger p-3 mb-3">
+                <div class="card-body">
+                    <i class="bi bi-file-earmark-text-fill display-4 text-danger"></i>
+                    <h4 class="mt-3">H5P</h4>
+                    <p class="text-muted">Create and manage H5P content here.</p>
+                    <a href="#" class="btn btn-danger">Generate Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

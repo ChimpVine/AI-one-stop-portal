@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(max_length=50, unique=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='users', default=2)
+    role = models.ForeignKey(Role, on_delete=models.CASCADE, related_name='user', default=2)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['first_name', 'last_name']

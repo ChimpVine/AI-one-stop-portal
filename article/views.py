@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
-
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from gspread.exceptions import SpreadsheetNotFound
@@ -10,7 +9,7 @@ import json
 import http.client
 from datetime import datetime
 from user.models import CustomUser
-
+from django.contrib import messages
 from Utils.Chimpvine.article import article_chimpvine
 from Utils.Dansonsolutions.article import article_Dansonsolutions
 from Utils.Preppers.article import article_Preppers
@@ -51,7 +50,6 @@ mathtricksjr_username = os.getenv('WP_USERNAME_MATHTRICKSJr')
 mathtricksjr_password = os.getenv('WP_PASSWORD_MATHTRICKSJr')
 
 
-print("hello")
 
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 CREDENTIALS_FILE = "credentials.json"
@@ -62,7 +60,7 @@ client = gspread.authorize(creds)
 
 @login_required
 def article(request):
-    return render(request, 'article.html')
+    return render(request, 'article/article.html')
 def update_sheet(sheet, row_number, status, date, time, email):
     try:
         status_col = sheet.find("Status").col
@@ -201,10 +199,10 @@ def process_sheet(sheet, generate_content_fn, website,email):
             update_sheet(sheet, row_number, "Content Generation Failed!", date, time, email)
             failed_contents.append(row_data.get("article_title", ""))
             print("Content generation failed.")
+            
 
     return f"Created: {len(created_contents)}, Failed: {len(failed_contents)}"
 
-from django.contrib.auth.decorators import login_required
 
 @login_required
 
@@ -243,7 +241,10 @@ def generate_and_post_article(request):
             else:
                 return JsonResponse({'error': 'Invalid website selection.'}, status=400)
 
+
             return JsonResponse({'result': result}, status=200)
+
+        
 
         except SpreadsheetNotFound:
             return JsonResponse({'error': 'Google Sheet not found.'}, status=404)

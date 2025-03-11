@@ -22,7 +22,7 @@ client = gspread.authorize(creds)
 
 @login_required
 def quiz(request):
-    return render(request, 'quiz.html')
+    return render(request, 'quiz/quiz.html')
 
 
 def update_sheet(sheet, row_number, status, date, time, email):

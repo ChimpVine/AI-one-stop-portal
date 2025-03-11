@@ -1,0 +1,133 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block title %} Article {% endblock %}
+
+{% block content %}
+
+<div class="col-sm p-3 min-vh-100">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-lg">
+                    <h2 class="text-center mb-4">Add Articles</h2>
+                       
+                    <form id="articleForm" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="google_sheet_id" class="form-label">Google Sheet Id</label>
+                            <i class="fa fa-info-circle ms-2" data-bs-toggle="tooltip" data-bs-placement="right" title="Remember to share the Google Sheet credentials email pytho-api@finalarticle.iam.gserviceaccount.com for access!" style="cursor: pointer;"></i>
+
+                            <div class="d-flex align-items-center">
+                                <input type="text" class="form-control form-control-sm" name="google_sheet_id" id="google_sheet_id"
+                                       placeholder="Enter Google Sheet Id" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="website" class="form-label">Website</label>
+                            <div class="d-flex align-items-center">
+                                <select class="form-select form-select-sm me-2" name="website" id="website" required>
+                                    <option value="" selected hidden>Please select a website</option>
+                                    <option value="chimpvine.com">Chimpvine.com</option>
+                                    <option value="dansonsolutions.com">Dansonsolutions.com</option>
+                                    <option value="preppers360.com">Preppers360.com</option>
+                                    <option value="visitnepal360.com">Visitnepal360.com</option>
+                                    <option value="dansonconsultancy.com">Dansonconsultancy.com</option>
+                                    <option value="mathfun.com">Mathfun.com</option>
+                                    <option value="mathtricksjr.com">Mathtricksjr.com</option>
+                                </select>
+                                <a id="sampleButton" class="btn btn-outline-secondary btn-sm" target="_blank" style="display: none;">Sample</a>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <span id="loading" class="spinner-border spinner-border-sm" style="display: none;" role="status" aria-hidden="true"></span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-outline-primary mt-2">Generate</button>
+                            <button type="reset" class="btn btn-outline-danger mt-2" id="clearButton">Clear</button>
+                        </div>
+                    </form>
+                    <div class="mt-3">
+                        <p id="response" class="text-center"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('articleForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const submitButton = e.target.querySelector("button[type='submit']");
+    submitButton.disabled = true;  // Prevent double submission
+
+    // Show loading spinner
+    document.getElementById('loading').style.display = 'inline-block';
+
+    const googleSheetId = document.getElementById('google_sheet_id').value.trim();
+    const website = document.getElementById('website').value.trim();
+    const userEmail = "{{ request.user.email }}";
+    const userName = "{{ request.user.username }}";
+
+    // Sending data to backend
+    const response = await fetch('/article/generate_and_post_article/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ google_sheet_id: googleSheetId, website: website, email: userEmail, username: userName }),
+    });
+
+    const result = await response.json();
+
+    // Display success or error message
+    const responseElement = document.getElementById('response');
+    responseElement.textContent = response.ok ? result.result : result.error;
+    responseElement.className = response.ok ? 'text-success' : 'text-danger';
+
+    // Hide loading spinner & enable button
+    document.getElementById('loading').style.display = 'none';
+    submitButton.disabled = false;
+});
+
+document.getElementById("website").addEventListener("change", function() {
+    let website = this.value.toLowerCase();
+    let sampleButton = document.getElementById("sampleButton");
+
+    // Mapping websites to Google Sheet links
+    let sheetLinks = {
+        "chimpvine.com": "https://docs.google.com/spreadsheets/d/1FuJhmHoTUmHeAJUnZ50_aExckiqHLEB4WUwij5oEW3s/edit?gid=0#gid=0",
+        "dansonsolutions.com": "https://docs.google.com/spreadsheets/d/1zyQ0Y3qO0DTzWltfPrRK2B01hLprr11nIznSm-PcPq4/edit?gid=0#gid=0",
+        "preppers360.com": "https://docs.google.com/spreadsheets/d/1_KUNdQHrRVBKW3fpfJJcEV9keSWzsmvg29OONRUzaNY/edit?gid=0#gid=0",
+        "visitnepal360.com": "https://docs.google.com/spreadsheets/d/1w9bm54iYCI8D_Glx-j6dGPjTls87sotFPG9826umHn8/edit?gid=0#gid=0",
+        "dansonconsultancy.com": "https://docs.google.com/spreadsheets/d/1pRLayEAOMOMbP7O4PcEyLJwKec28Ma-xb1M7v4Up5TQ/edit?gid=0#gid=0",
+        "mathfun.com": "https://docs.google.com/spreadsheets/d/1VlSs_3qU6oA17ZT_8i3TiSVhGhf5uTlx52Z5qFFWPlM/edit?gid=0",
+        "mathtricksjr.com": "https://docs.google.com/spreadsheets/d/1GE0bmn9G4z6IHx0d-14iXbdcc6Kbbjm-jvJN3LcexCU/edit?gid=0#gid=0"
+    };
+
+    // Update button visibility & link
+    if (sheetLinks[website]) {
+        sampleButton.href = sheetLinks[website]; // Assign correct Google Sheet link
+        sampleButton.style.display = "inline-block"; // Show button
+    } else {
+        sampleButton.style.display = "none"; // Hide button
+    }
+});
+
+// Enable Bootstrap Tooltip functionality
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+
+// Add event listener to reset button
+document.getElementById('clearButton').addEventListener('click', function() {
+    // Hide the sample button when the form is cleared
+    document.getElementById('sampleButton').style.display = 'none';
+    document.getElementById('response').textContent = ''; // Clear response message
+});
+</script>
+
+{% endblock %}

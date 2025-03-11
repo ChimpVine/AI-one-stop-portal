@@ -20,7 +20,7 @@ load_dotenv()
 
 @login_required
 def articlequiz(request):
-    return render(request, 'articlequiz.html')
+    return render(request, 'articlequiz/articlequiz.html')
 
 def encode_auth(username, password):
     credentials = f"{username}:{password}"

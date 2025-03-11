@@ -1,0 +1,138 @@
+{% extends 'nav.html' %}
+{% load static %}
+
+{% block title %} Article & Quiz {% endblock %}
+
+{% block content %}
+<div class="col-sm p-3 min-vh-100">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-lg">
+                    <h2 class="text-center mb-4">Add Articles and Quiz</h2>
+                    <form id="articlequizForm" method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Google Sheet Id</label>
+                            <i class="fa fa-info-circle ms-2" data-bs-toggle="tooltip" data-bs-placement="right" 
+                               title="Remember to share the Google Sheet credentials email pytho-api@finalarticle.iam.gserviceaccount.com for access!" 
+                               style="cursor: pointer;"></i>
+
+                            <input type="text" class="form-control form-control-sm" name="google_sheet_id" id="google_sheet_id"
+                                placeholder="Enter Google Sheet Id" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="website" class="form-label">Website</label>
+                            <div class="d-flex align-items-center">
+                                <select class="form-select form-select-sm me-2" name="website" id="website" required>
+                                    <option value="" selected hidden>Please select a website</option>
+                                    <option value="Chimpvine.com">Chimpvine.com</option>
+                                    <option value="site.chimpvine.com/dev314159">Dev-Chimpvine.com</option>
+                                </select>
+                                <a id="sampleButton" class="btn btn-outline-secondary btn-sm" target="_blank" style="display: none;">Sample</a>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <span id="loading" class="spinner-border spinner-border-sm" style="display: none;" role="status" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-outline-primary mt-2" id="submitButton">Generate</button>
+                            <button type="reset" class="btn btn-outline-danger mt-2" id="clearButton">Clear</button>
+                        </div>
+
+                        <div class="mt-3 text-center">
+                            <p id="response" class="fw-bold"></p> <!-- Response message -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('articlequizForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    // Get values from the form
+    const googleSheetId = document.getElementById('google_sheet_id').value;
+    const website = document.getElementById('website').value;
+    const userEmail = "{{ request.user.email }}";  
+    const userName = "{{ request.user.username }}";  
+
+    // Get loading spinner and submit button
+    const loadingSpinner = document.getElementById('loading');
+    const submitButton = document.getElementById('submitButton');
+
+    // Show loading spinner and disable button
+    loadingSpinner.style.display = 'inline-block';
+    submitButton.disabled = true;
+
+    try {
+        const response = await fetch('/articlequiz/process_quiz_article/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                google_sheet_id: googleSheetId,
+                website: website,
+                email: userEmail,
+                username: userName,
+            }),
+        });
+
+        const result = await response.json();
+        const responseElement = document.getElementById('response');
+        
+        responseElement.textContent = response.ok ? result.result : result.error;
+        responseElement.className = response.ok ? 'text-success' : 'text-danger';
+    } catch (error) {
+        console.error("Error:", error);
+        document.getElementById('response').textContent = "An error occurred. Please try again.";
+        document.getElementById('response').className = 'text-danger';
+    } finally {
+        // Hide loading spinner and enable button after completion
+        loadingSpinner.style.display = 'none';
+        submitButton.disabled = false;
+    }
+});
+
+document.getElementById("website").addEventListener("change", function() {
+    let website = this.value;
+    let sampleButton = document.getElementById("sampleButton");
+
+    // Mapping websites to Google Sheet links
+    let sheetLinks = {
+        "Chimpvine.com": "https://docs.google.com/spreadsheets/d/1FuJhmHoTUmHeAJUnZ50_aExckiqHLEB4WUwij5oEW3s/edit?gid=0#gid=0",
+        "site.chimpvine.com/dev314159": "https://docs.google.com/spreadsheets/d/1FuJhmHoTUmHeAJUnZ50_aExckiqHLEB4WUwij5oEW3s/edit?gid=0#gid=0"
+    };
+
+    // Update button visibility & link
+    if (sheetLinks[website]) {
+        sampleButton.href = sheetLinks[website];
+        sampleButton.style.display = "inline-block";
+    } else {
+        sampleButton.style.display = "none";
+    }
+});
+
+// Enable Bootstrap Tooltip functionality
+document.addEventListener('DOMContentLoaded', function () {
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+
+// Add event listener to reset button
+document.getElementById('clearButton').addEventListener('click', function() {
+    document.getElementById('sampleButton').style.display = 'none';
+    document.getElementById('response').textContent = ''; // Clear response message
+});
+</script>
+
+{% endblock %}

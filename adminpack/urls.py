@@ -22,6 +22,7 @@ urlpatterns = [
     path('article/', include('article.urls')), 
     path('quiz/', include('quiz.urls')), 
     path('articlequiz/', include('articlequiz.urls')), 
+    path('h5p/', include('H5P.urls')), 
 
     
 ]

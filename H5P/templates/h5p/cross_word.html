@@ -30,6 +30,9 @@
                                 <label for="drive_folder_id" class="form-label">Drive Folder Id</label>
                                 <input type="text" class="form-control form-control-sm" id="drive_folder_id" name="drive_folder_id" placeholder="Enter Drive Folder Id" required>
                             </div>
+                            <div class="text-center">
+                                <span id="loading" class="spinner-border spinner-border-sm" style="display: none;" role="status" aria-hidden="true"></span>
+                            </div>
                             
                             <div class="d-flex justify-content-between">
                                 <button type="submit" class="btn btn-outline-primary mt-2">Generate</button>
@@ -44,58 +47,62 @@
     </div>
 
 <script>
-    document.getElementById('crosswordForm').addEventListener('submit', async function (e) {
-        e.preventDefault();
+document.getElementById('crosswordForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-        console.log("Form submitted");  // Debugging
+    console.log("Form submitted");
 
-        const googleSheetId = document.getElementById('google_sheet_id').value;
-        const sheetName = document.getElementById('sheet_name').value;
-        const driveFolderId = document.getElementById('drive_folder_id').value;
-        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const googleSheetId = document.getElementById('google_sheet_id').value;
+    const sheetName = document.getElementById('sheet_name').value;
+    const driveFolderId = document.getElementById('drive_folder_id').value;
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    const loadingSpinner = document.getElementById('loading');
+    const submitButton = this.querySelector('button[type="submit"]');
 
-        console.log("Google Sheet ID:", googleSheetId);
-        console.log("Sheet Name:", sheetName);
-        console.log("Drive Folder ID:", driveFolderId);
+    console.log("Google Sheet ID:", googleSheetId);
+    console.log("Sheet Name:", sheetName);
+    console.log("Drive Folder ID:", driveFolderId);
 
-        try {
-            const response = await fetch('/h5p/process_crossword_h5p/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrftoken
-                },
-                body: JSON.stringify({
-                    google_sheet_id: googleSheetId,
-                    sheet_name: sheetName,
-                    drive_folder_id: driveFolderId
-                })
-            });
+    // Show loading spinner & disable submit button
+    loadingSpinner.style.display = 'inline-block';
+    submitButton.disabled = true;
 
-            const result = await response.json();
-            console.log("Response:", result);
+    try {
+        const response = await fetch('/h5p/process_crossword_h5p/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify({
+                google_sheet_id: googleSheetId,
+                sheet_name: sheetName,
+                drive_folder_id: driveFolderId
+            })
+        });
 
-            // Set message and styling based on response status
-            const responseDiv = document.getElementById('response');
-            responseDiv.textContent = response.ok ? result.message : result.error;
-            responseDiv.className = response.ok ? 'alert alert-success' : 'alert alert-danger';
+        const result = await response.json();
+        console.log("Response:", result);
 
-        } catch (error) {
-            console.error("Fetch error:", error);
+        // Set message and styling based on response status
+        const responseDiv = document.getElementById('response');
+        responseDiv.textContent = response.ok ? result.message : result.error;
+        responseDiv.className = response.ok ? 'alert alert-success' : 'alert alert-danger';
 
-            // Display fetch error in UI
-            const responseDiv = document.getElementById('response');
-            responseDiv.textContent = "An error occurred. Please try again.";
-            responseDiv.className = 'alert alert-danger';
-        }
-    });
+    } catch (error) {
+        console.error("Fetch error:", error);
 
-    // Enable Bootstrap Tooltip functionality
-document.addEventListener('DOMContentLoaded', function () {
-    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
+        // Display fetch error in UI
+        const responseDiv = document.getElementById('response');
+        responseDiv.textContent = "An error occurred. Please try again.";
+        responseDiv.className = 'alert alert-danger';
+
+    } finally {
+        // Hide loading spinner & enable submit button after request completes
+        loadingSpinner.style.display = 'none';
+        submitButton.disabled = false;
+    }
 });
+
 </script>
 {% endblock %}

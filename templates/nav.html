@@ -104,6 +104,11 @@
                                 <i class="fa-solid fa-users fs-5 mb-3 me-2"></i> Add User
                             </a>
                         </li>
+                        <li>
+                            <a href="{% url 'users_list' %}" class="nav-link py-3 px-2 mt-2 link-light {% if request.path == '/user_list/' %}active{% endif %}" title="Users List">
+                                <i class="fa-solid fa-user fs-5 mb-3 me-2"></i> Users List
+                            </a>
+                        </li>
                         {% endif %}
 
                         <li>
@@ -117,7 +122,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link py-3 px-2 link-light {% if request.path == '/h5p/' %}active{% endif %}" title="H5P">
+                            <a href="{% url 'h5p'%}" class="nav-link py-3 px-2 link-light {% if request.path == '/h5p/' %}active{% endif %}" title="H5P">
                                 <i class="fa-solid fa-file fs-5 mb-3 me-2"></i> H5P
                             </a>
                         </li>

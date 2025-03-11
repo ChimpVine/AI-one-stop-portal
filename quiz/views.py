@@ -82,7 +82,6 @@ def post_to_wordpress(content):
         print(f"Error posting to WordPress: {str(e)}")
         return None
 
-
 def process_sheet(sheet, generate_content_fn, email):
     all_rows = list(enumerate(sheet.get_all_records(), start=2))
     date = datetime.now().strftime("%Y-%m-%d")
@@ -91,8 +90,9 @@ def process_sheet(sheet, generate_content_fn, email):
     created_contents, failed_contents = [], []
 
     for row_number, row_data in all_rows:
-        if row_data.get("Status", "") == "Posted successfully!":
-            continue
+        # Skip rows that are already drafted or posted successfully
+        if row_data.get("Status", "").strip().lower() in ["posted successfully!", "drafted successfully!"]:
+            continue  
 
         content = generate_content_fn(row_data)
 
@@ -115,7 +115,6 @@ def process_sheet(sheet, generate_content_fn, email):
             print("Content generation failed.")
 
     return f"Created: {len(created_contents)}, Failed: {len(failed_contents)}"
-
 
 @login_required
 @csrf_exempt
